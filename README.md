@@ -8,6 +8,11 @@ NovaNav: Lightweight browser for Linux and macOS, delivering fast, distraction-f
 pip install -r requirements.txt
 ```
 
+```
+python3 -m venv novanav-env
+source novanav-env/bin/activate
+```
+
 #### Runt it
 
 ```
