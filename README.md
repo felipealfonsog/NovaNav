@@ -27,3 +27,13 @@ source novanav-env/bin/activate
 ```
 python ./src/novanav.py
 ```
+
+#### How-to
+
+```
+ctrl+t (New tab)
+ctrl+v (hide tabs for distraction-free)
+ctrl+q (quit)
+```
+
+
