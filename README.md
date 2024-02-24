@@ -14,7 +14,7 @@ NovaNav: Lightweight browser for Linux and macOS, delivering fast, distraction-f
 #### Requirements
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ```
