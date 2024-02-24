@@ -4,17 +4,19 @@ NovaNav: Lightweight browser for Linux and macOS, delivering fast, distraction-f
 #### Screenshots
 
 <p align="center">
-  <img src="./images/sshot-1.png" alt="Screenshot" width="400" height="350">
+  <img src="./images/sshot-2.png" alt="Screenshot" width="400" height="350">
 </p>
 
 <p align="center">
-  <img src="./images/sshot-2.png" alt="Screenshot" width="400" height="350">
+  <img src="./images/sshot-1.png" alt="Screenshot" width="400" height="350">
 </p>
 
 #### Requirements
 
+Install Python3, then:
+
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ```
@@ -25,5 +27,15 @@ source novanav-env/bin/activate
 #### Runt it
 
 ```
-python ./src/novanav.py
+python3 ./src/novanav.py
 ```
+
+#### How-to
+
+```
+ctrl+t (New tab)
+ctrl+v (hide tabs for distraction-free)
+ctrl+q (quit)
+```
+
+
