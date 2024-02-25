@@ -40,9 +40,6 @@ class NovaNav(QWebEngineView):
         # Set permissions and settings
         self.set_permissions_and_settings()
 
-        # Apply stylesheet for thin scrollbar
-        self.setStyleSheet("QScrollBar:vertical {width: 8px;}")
-
     def set_permissions_and_settings(self):
         settings = QWebEngineSettings.globalSettings()
         settings.setAttribute(QWebEngineSettings.ScreenCaptureEnabled, True)
@@ -57,21 +54,23 @@ class NovaNav(QWebEngineView):
         settings.setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
         settings.setAttribute(QWebEngineSettings.ErrorPageEnabled, True)
 
-        # Connect linkClicked signal to handle_link_click method
-        self.linkClicked.connect(self.handle_link_click)  
+        # Connect urlChanged signal to handle_url_changed method
+        self.page().urlChanged.connect(self.handle_url_changed)  
 
-    def handle_link_click(self, url):
+    def handle_url_changed(self, url):
         # Get the HTML content of the current page
-        html_content = self.page().toHtml(self.handle_html_content)
+        self.page().toHtml(self.handle_html_content)
 
     def handle_html_content(self, html):
         # Check if the HTML contains the target="_blank" attribute
         if '_blank' in html:
             # Open the link in a new tab
-            self.create_new_tab(url.toString())
+            self.create_new_tab(html)
         else:
-            # Open the link in the same tab
-            self.page().setUrl(url)
+            # Load the HTML content in the current tab
+            current_browser = self.tab_widget.currentWidget()
+            if current_browser:
+                current_browser.setHtml(html)
 
     def show_url_input_dialog(self):
         self.url_input_dialog.show()
@@ -95,7 +94,7 @@ class NovaNav(QWebEngineView):
         browser.page().fullScreenRequested.connect(lambda request: request.accept())
         browser.page().urlChanged.connect(self.handle_url_changed)
         browser.page().setZoomFactor(0.65)  # Set default zoom factor to 65%
-        
+
         self.tab_widget.addTab(browser, "")
 
     def set_tab_title(self, browser, title):
@@ -114,6 +113,7 @@ class NovaNav(QWebEngineView):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setStyleSheet("QScrollBar:vertical { width: 8px; }")  # Adjust the width of vertical scrollbars
     window = NovaNav()
     window.show()
     sys.exit(app.exec_())
