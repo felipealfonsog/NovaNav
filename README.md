@@ -1,14 +1,16 @@
 ### NovaNav
 NovaNav: Lightweight browser for Linux and macOS, delivering fast, distraction-free browsing experience.
 
-#### Screenshots
+#### Screenshot Linux
 
 <p align="center">
-  <img src="./images/sshot-2.png" alt="Screenshot" width="400" height="350">
+  <img src="./images/linux/shot-2024-02-25_03-30-42.jpg" alt="Screenshot" width="400" height="350">
 </p>
 
+#### Screenshot macOS
+
 <p align="center">
-  <img src="./images/sshot-1.png" alt="Screenshot" width="400" height="350">
+  <img src="./images/macos/sshot-2.png" alt="Screenshot" width="400" height="350">
 </p>
 
 #### Requirements
