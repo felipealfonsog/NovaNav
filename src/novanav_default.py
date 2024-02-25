@@ -1,7 +1,7 @@
 import sys
-from PyQt5.QtCore import Qt, QUrl
+from PyQt5.QtCore import QUrl, Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLineEdit, QPushButton, QWidget, QTabWidget, QShortcut, QDialog
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage
+from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage, QWebEngineSettings, QWebEngineProfile
 
 class URLInputDialog(QDialog):
     def __init__(self):
@@ -34,6 +34,9 @@ class NovaNav(QMainWindow):
         self.url_input_dialog = URLInputDialog()
         self.url_input_dialog.ok_button.clicked.connect(self.open_new_tab)
 
+        self.shortcut_new_tab = QShortcut("Ctrl+T", self)
+        self.shortcut_new_tab.activated.connect(self.show_url_input_dialog)
+
         self.shortcut_zoom_in = QShortcut(Qt.CTRL + Qt.Key_Plus, self)
         self.shortcut_zoom_in.activated.connect(self.zoom_in)
 
@@ -45,17 +48,45 @@ class NovaNav(QMainWindow):
 
         self.create_new_tab("https://www.google.com")
 
+        # Set permissions and settings
+        self.set_permissions_and_settings()
+
+    def set_permissions_and_settings(self):
+        settings = QWebEngineSettings.globalSettings()
+        settings.setAttribute(QWebEngineSettings.ScreenCaptureEnabled, True)
+        settings.setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
+        settings.setAttribute(QWebEngineSettings.PluginsEnabled, True)
+        settings.setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+        settings.setAttribute(QWebEngineSettings.AutoLoadImages, True)
+        settings.setAttribute(QWebEngineSettings.JavascriptCanAccessClipboard, True)
+        settings.setAttribute(QWebEngineSettings.JavascriptCanOpenWindows, True)
+        settings.setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+        settings.setAttribute(QWebEngineSettings.XSSAuditingEnabled, True)
+        settings.setAttribute(QWebEngineSettings.Accelerated2dCanvasEnabled, True)
+        settings.setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
+        settings.setAttribute(QWebEngineSettings.ErrorPageEnabled, True)
+
     def create_new_tab(self, url):
         if not url.startswith("http"):
             url = "http://" + url
         browser = QWebEngineView()
         browser.setUrl(QUrl(url))
+        browser.page().profile().setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36") # Customize the user agent to avoid blocking by some websites
         browser.titleChanged.connect(lambda title, browser=browser: self.set_tab_title(browser, title[:20]))  # Limit title to 20 characters
         browser.page().fullScreenRequested.connect(lambda request: request.accept())
-        browser.page().profile().downloadRequested.connect(self.download_requested)
-        browser.page().setFeaturePermissionRequested.connect(self.handle_feature_permission_requested)
-        browser.page().createWindow = self.create_new_window  # Handle creation of new windows and tabs
+        browser.page().urlChanged.connect(self.handle_url_changed)
+        browser.page().setZoomFactor(0.65)  # Set default zoom factor to 65%
+        
         self.tab_widget.addTab(browser, "")
+
+    def handle_url_changed(self, url):
+        if "_blank" in url.toString():
+            current_browser = self.tab_widget.currentWidget()
+            if current_browser:
+                current_browser.setUrl(url)
+
+    def show_url_input_dialog(self):
+        self.url_input_dialog.show()
 
     def open_new_tab(self):
         url = self.url_input_dialog.url_entry.text()
@@ -86,27 +117,6 @@ class NovaNav(QMainWindow):
             title = browser.title() if self.tab_widget.tabBar().isVisible() else self.tab_widget.tabText(i)
             self.set_tab_title(browser, title[:20])
         self.tab_widget.tabBar().setVisible(not self.tab_widget.tabBar().isVisible())
-
-    def download_requested(self, download):
-        download.accept()
-
-    def handle_feature_permission_requested(self, url, feature):
-        if feature == QWebEnginePage.Geolocation:
-            self.tab_widget.currentWidget().page().setFeaturePermission(
-                url, QWebEnginePage.PermissionGrantedByUser)
-        elif feature in [QWebEnginePage.MediaAudioCapture, QWebEnginePage.MediaVideoCapture]:
-            self.tab_widget.currentWidget().page().setFeaturePermission(
-                url, QWebEnginePage.PermissionGrantedByUser)
-        elif feature == QWebEnginePage.MouseLock:
-            self.tab_widget.currentWidget().page().setFeaturePermission(
-                url, QWebEnginePage.PermissionGrantedByUser)
-
-    def create_new_window(self, mode):
-        if mode == QWebEnginePage.WebBrowserTab:
-            self.create_new_tab("")
-        elif mode == QWebEnginePage.WebBrowserWindow:
-            window = NovaNav()
-            window.show()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
