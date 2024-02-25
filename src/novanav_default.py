@@ -123,3 +123,4 @@ if __name__ == "__main__":
     window = NovaNav()
     window.show()
     sys.exit(app.exec_())
+
