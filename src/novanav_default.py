@@ -60,7 +60,6 @@ class NovaNav(QMainWindow):
         settings.setAttribute(QWebEngineSettings.AutoLoadImages, True)
         settings.setAttribute(QWebEngineSettings.JavascriptCanAccessClipboard, True)
         settings.setAttribute(QWebEngineSettings.JavascriptCanOpenWindows, True)
-        settings.setAttribute(QWebEngineSettings.JavascriptEnabled, True)
         settings.setAttribute(QWebEngineSettings.XSSAuditingEnabled, True)
         settings.setAttribute(QWebEngineSettings.Accelerated2dCanvasEnabled, True)
         settings.setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
@@ -76,7 +75,7 @@ class NovaNav(QMainWindow):
         browser.page().fullScreenRequested.connect(lambda request: request.accept())
         browser.page().urlChanged.connect(self.handle_url_changed)
         browser.page().setZoomFactor(0.65)  # Set default zoom factor to 65%
-        
+
         self.tab_widget.addTab(browser, "")
 
     def handle_url_changed(self, url):
@@ -95,6 +94,9 @@ class NovaNav(QMainWindow):
         self.url_input_dialog.hide()
 
     def close_tab(self, index):
+        widget = self.tab_widget.widget(index)
+        if widget is not None:
+            widget.deleteLater()
         self.tab_widget.removeTab(index)
 
     def set_tab_title(self, browser, title):
@@ -123,4 +125,3 @@ if __name__ == "__main__":
     window = NovaNav()
     window.show()
     sys.exit(app.exec_())
-
