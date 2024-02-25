@@ -2,7 +2,7 @@
 
 NovaNav: Lightweight browser* for Linux and macOS, delivering fast, distraction-free browsing experience. This is my own version for Arc Browser mostly for Linux.
 
- <img src="./images/icons/distraction.png" alt="logo" width="75" height="75">
+ <img src="./images/icons/distraction.png" alt="NovaNav-Logo" width="75" height="75">
 
 NovaNav, inspired by Arc Browser, is a minimalist and distraction-free web browser developed using PyQt5 and QtWebEngineWidgets. It offers essential browsing functionalities while focusing on simplicity and efficiency. With NovaNav, users can effortlessly navigate the web, open multiple tabs, and adjust zoom settings for optimal viewing.
 The browser's clean interface and intuitive design make it ideal for users who prefer a clutter-free browsing experience. By minimizing distractions and prioritizing essential features, NovaNav aims to provide a seamless and enjoyable web browsing experience.
@@ -41,7 +41,11 @@ The browser's clean interface and intuitive design make it ideal for users who p
 #### Screenshot Linux
 
 <p align="center">
-  <img src="./images/linux/shot-2024-02-25_03-30-42.jpg" alt="Screenshot" width="400" height="350">
+  <img src="./images/linux/v002/sshot-2.jpg" alt="Screenshot" width="400" height="350">
+</p>
+
+<p align="center">
+  <img src="./images/linux/v002/sshot-1.jpg" alt="Screenshot" width="400" height="350">
 </p>
 
 #### Screenshot macOS
