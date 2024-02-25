@@ -14,37 +14,26 @@ class URLInputDialog(QDialog):
         layout.addWidget(self.ok_button)
         self.ok_button.clicked.connect(self.accept)
 
-class NovaNav(QMainWindow):
+class NovaNav(QWebEngineView):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("NovaNav - Super Lightweight Browser")
         self.setGeometry(100, 100, 800, 600)
-
-        self.central_widget = QWidget()
-        self.setCentralWidget(self.central_widget)
-        self.layout = QVBoxLayout(self.central_widget)
 
         self.tab_widget = QTabWidget()
         self.tab_widget.setTabsClosable(True)
         self.tab_widget.tabCloseRequested.connect(self.close_tab)
         self.tab_widget.setMinimumWidth(200)  # Set a minimum width for the tabs
 
+        self.layout = QVBoxLayout()
         self.layout.addWidget(self.tab_widget)
+        self.setLayout(self.layout)
 
         self.url_input_dialog = URLInputDialog()
         self.url_input_dialog.ok_button.clicked.connect(self.open_new_tab)
 
         self.shortcut_new_tab = QShortcut("Ctrl+T", self)
         self.shortcut_new_tab.activated.connect(self.show_url_input_dialog)
-
-        self.shortcut_zoom_in = QShortcut(Qt.CTRL + Qt.Key_Plus, self)
-        self.shortcut_zoom_in.activated.connect(self.zoom_in)
-
-        self.shortcut_zoom_out = QShortcut(Qt.CTRL + Qt.Key_Minus, self)
-        self.shortcut_zoom_out.activated.connect(self.zoom_out)
-
-        self.shortcut_toggle_titles = QShortcut(Qt.CTRL + Qt.Key_V, self)  # Change shortcut to Ctrl+V
-        self.shortcut_toggle_titles.activated.connect(self.toggle_titles)
 
         self.create_new_tab("https://www.google.com")
 
@@ -65,6 +54,9 @@ class NovaNav(QMainWindow):
         settings.setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
         settings.setAttribute(QWebEngineSettings.ErrorPageEnabled, True)
 
+        # Connect linkClicked signal to handle_link_click method
+        self.page().linkClicked.connect(self.handle_link_click)  
+
     def create_new_tab(self, url):
         if not url.startswith("http"):
             url = "http://" + url
@@ -73,16 +65,22 @@ class NovaNav(QMainWindow):
         browser.page().profile().setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36") # Customize the user agent to avoid blocking by some websites
         browser.titleChanged.connect(lambda title, browser=browser: self.set_tab_title(browser, title[:20]))  # Limit title to 20 characters
         browser.page().fullScreenRequested.connect(lambda request: request.accept())
-        browser.page().urlChanged.connect(self.handle_url_changed)
         browser.page().setZoomFactor(0.65)  # Set default zoom factor to 65%
-
+        
         self.tab_widget.addTab(browser, "")
 
-    def handle_url_changed(self, url):
-        if "_blank" in url.toString():
-            current_browser = self.tab_widget.currentWidget()
-            if current_browser:
-                current_browser.setUrl(url)
+    def handle_link_click(self, url):
+        # Get the HTML content of the current page
+        html_content = self.page().toHtml(self.handle_html_content)
+
+    def handle_html_content(self, html):
+        # Check if the HTML contains the target="_blank" attribute
+        if '_blank' in html:
+            # Open the link in a new tab
+            self.create_new_tab(url.toString())
+        else:
+            # Open the link in the same tab
+            self.page().setUrl(url)
 
     def show_url_input_dialog(self):
         self.url_input_dialog.show()
@@ -94,9 +92,6 @@ class NovaNav(QMainWindow):
         self.url_input_dialog.hide()
 
     def close_tab(self, index):
-        widget = self.tab_widget.widget(index)
-        if widget is not None:
-            widget.deleteLater()
         self.tab_widget.removeTab(index)
 
     def set_tab_title(self, browser, title):
