@@ -1,7 +1,7 @@
 import sys
-from PyQt5.QtCore import Qt, QUrl
+from PyQt5.QtCore import QUrl, Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLineEdit, QPushButton, QWidget, QTabWidget, QShortcut, QDialog
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage
+from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage, QWebEngineSettings, QWebEngineProfile
 
 class URLInputDialog(QDialog):
     def __init__(self):
@@ -48,15 +48,42 @@ class NovaNav(QMainWindow):
 
         self.create_new_tab("https://www.google.com")
 
+        # Set permissions and settings
+        self.set_permissions_and_settings()
+
+    def set_permissions_and_settings(self):
+        settings = QWebEngineSettings.globalSettings()
+        settings.setAttribute(QWebEngineSettings.ScreenCaptureEnabled, True)
+        settings.setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
+        settings.setAttribute(QWebEngineSettings.PluginsEnabled, True)
+        settings.setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+        settings.setAttribute(QWebEngineSettings.AutoLoadImages, True)
+        settings.setAttribute(QWebEngineSettings.JavascriptCanAccessClipboard, True)
+        settings.setAttribute(QWebEngineSettings.JavascriptCanOpenWindows, True)
+        settings.setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+        settings.setAttribute(QWebEngineSettings.XSSAuditingEnabled, True)
+        settings.setAttribute(QWebEngineSettings.Accelerated2dCanvasEnabled, True)
+        settings.setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
+        settings.setAttribute(QWebEngineSettings.ErrorPageEnabled, True)
+
     def create_new_tab(self, url):
         if not url.startswith("http"):
             url = "http://" + url
         browser = QWebEngineView()
         browser.setUrl(QUrl(url))
+        browser.page().profile().setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36") # Customize the user agent to avoid blocking by some websites
         browser.titleChanged.connect(lambda title, browser=browser: self.set_tab_title(browser, title[:20]))  # Limit title to 20 characters
         browser.page().fullScreenRequested.connect(lambda request: request.accept())
-        browser.page().createWindow = lambda mode: self.create_new_tab("")  # Manejar la creación de nuevas ventanas
+        browser.page().urlChanged.connect(self.handle_url_changed)
+        browser.page().setZoomFactor(0.65)  # Set default zoom factor to 65%
+        
         self.tab_widget.addTab(browser, "")
+
+    def handle_url_changed(self, url):
+        if "_blank" in url.toString():
+            current_browser = self.tab_widget.currentWidget()
+            if current_browser:
+                current_browser.setUrl(url)
 
     def show_url_input_dialog(self):
         self.url_input_dialog.show()
@@ -96,3 +123,4 @@ if __name__ == "__main__":
     window = NovaNav()
     window.show()
     sys.exit(app.exec_())
+
