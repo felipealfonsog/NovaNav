@@ -1,4 +1,4 @@
-### 🌐 NovaNav - Super Lightweight Browser
+#### 🌐 NovaNav - Super Lightweight Browser
 
 NovaNav: Lightweight browser* for Linux and macOS, delivering fast, distraction-free browsing experience. This is my own version for Arc Browser mostly for Linux.
 
