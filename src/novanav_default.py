@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtCore import QUrl, Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLineEdit, QPushButton, QWidget, QTabWidget, QShortcut, QDialog
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage, QWebEngineSettings, QWebEngineProfile
+from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 
 class URLInputDialog(QDialog):
     def __init__(self):
@@ -54,33 +54,21 @@ class NovaNav(QWebEngineView):
         settings.setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
         settings.setAttribute(QWebEngineSettings.ErrorPageEnabled, True)
 
-        # Connect linkClicked signal to handle_link_click method
-        self.page().linkClicked.connect(self.handle_link_click)  
+        # Connect urlChanged signal to handle_url_changed method
+        self.page().urlChanged.connect(self.handle_url_changed)  
 
-    def create_new_tab(self, url):
-        if not url.startswith("http"):
-            url = "http://" + url
-        browser = QWebEngineView()
-        browser.setUrl(QUrl(url))
-        browser.page().profile().setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36") # Customize the user agent to avoid blocking by some websites
-        browser.titleChanged.connect(lambda title, browser=browser: self.set_tab_title(browser, title[:20]))  # Limit title to 20 characters
-        browser.page().fullScreenRequested.connect(lambda request: request.accept())
-        browser.page().setZoomFactor(0.65)  # Set default zoom factor to 65%
-        
-        self.tab_widget.addTab(browser, "")
-
-    def handle_link_click(self, url):
+    def handle_url_changed(self, url):
         # Get the HTML content of the current page
-        html_content = self.page().toHtml(self.handle_html_content)
+        self.page().toHtml(self.handle_html_content)
 
     def handle_html_content(self, html):
         # Check if the HTML contains the target="_blank" attribute
         if '_blank' in html:
             # Open the link in a new tab
-            self.create_new_tab(url.toString())
+            self.create_new_tab(html)
         else:
             # Open the link in the same tab
-            self.page().setUrl(url)
+            self.page().setUrl(html)
 
     def show_url_input_dialog(self):
         self.url_input_dialog.show()
@@ -93,6 +81,19 @@ class NovaNav(QWebEngineView):
 
     def close_tab(self, index):
         self.tab_widget.removeTab(index)
+
+    def create_new_tab(self, url):
+        if not url.startswith("http"):
+            url = "http://" + url
+        browser = QWebEngineView()
+        browser.setUrl(QUrl(url))
+        browser.page().profile().setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36") # Customize the user agent to avoid blocking by some websites
+        browser.titleChanged.connect(lambda title, browser=browser: self.set_tab_title(browser, title[:20]))  # Limit title to 20 characters
+        browser.page().fullScreenRequested.connect(lambda request: request.accept())
+        browser.page().urlChanged.connect(self.handle_url_changed)
+        browser.page().setZoomFactor(0.65)  # Set default zoom factor to 65%
+        
+        self.tab_widget.addTab(browser, "")
 
     def set_tab_title(self, browser, title):
         index = self.tab_widget.indexOf(browser)
@@ -107,13 +108,6 @@ class NovaNav(QWebEngineView):
         current_browser = self.tab_widget.currentWidget()
         if current_browser:
             current_browser.setZoomFactor(current_browser.zoomFactor() - 0.1)
-
-    def toggle_titles(self):
-        for i in range(self.tab_widget.count()):
-            browser = self.tab_widget.widget(i)
-            title = browser.title() if self.tab_widget.tabBar().isVisible() else self.tab_widget.tabText(i)
-            self.set_tab_title(browser, title[:20])
-        self.tab_widget.tabBar().setVisible(not self.tab_widget.tabBar().isVisible())
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
