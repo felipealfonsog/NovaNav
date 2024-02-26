@@ -81,7 +81,7 @@ If you want to use -wget- just copy/paste this line:
    brew install wget
    ```
 
-#### Decompress the tarball:
+#### Unpack the tarball:
 
 1. **Download the file**: Download the `novanav_v.x.x.x.tar.gz` file from the repository.
 
