@@ -1,2 +1,4 @@
-PyQt5==5.15.6
-PyQtWebEngine==5.15.6
+python-pyqt5
+qt5-base
+qt5-webengine
+
