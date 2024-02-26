@@ -9,7 +9,7 @@ The browser's clean interface and intuitive design make it ideal for users who p
 
 [![Download NovaNav](https://custom-icon-badges.demolab.com/badge/NovaNav%20Browser-blue.svg?style=for-the-badge&logo=novanav&logoColor=white)](https://github.com/felipealfonsog/NovaNav)
 
-[![Download NovaNav](https://img.shields.io/badge/Download-NovaNav-red?style=for-the-badge&logo=internet)](https://github.com/felipealfonsog/NovaNav#download-the-binary-file-executable)
+[![Download NovaNav](https://img.shields.io/badge/Download-NovaNav-Browser-red?style=for-the-badge&logo=internet)](https://github.com/felipealfonsog/NovaNav#download-the-binary-file-executable)
 
 <sub>* This is currently an experimental phase where the primary focus is on making the system functional and establishing a practical and logical pathway that aligns with both my vision and the project's goals. It might contain errors, bugs, etc. Many other non-core elements of the project are considered secondary.</sub>
 
