@@ -59,7 +59,7 @@ The browser's clean interface and intuitive design make it ideal for users who p
 </p>
 
 
-#### Download the Binary file (Executable)
+#### Download the Binary file (Executable for Linux)
 
 
 Or just Copy - Paste in your terminal and use -curl- to start downloading the binary file:
@@ -81,7 +81,7 @@ If you want to use -wget- just copy/paste this line:
    brew install wget
    ```
 
-#### Unzip on macOS and Linux:
+#### Decompress the tarball:
 
 1. **Download the file**: Download the `novanav_v.x.x.x.tar.gz` file from the repository.
 
@@ -124,7 +124,7 @@ Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your s
 - Enhance privacy and security features to protect user data and browsing activities from unauthorized access.
 
 
-#### Requirements
+#### Requirements & Instructions for compiling and executing manually.
 
 Install Python3, then:
 
