@@ -55,6 +55,55 @@ The browser's clean interface and intuitive design make it ideal for users who p
 </p>
 
 
+#### Download the Binary file (Executable)
+
+
+Or just Copy - Paste in your terminal and use -curl- to start downloading the binary file:
+
+   ```
+   curl -O https://freeshell.de/~felipe/NovaNav/Bin/novanav_v.0.0.2.tar.gz
+   ```
+
+If you want to use -wget- just copy/paste this line:
+
+   ```
+   wget https://freeshell.de/~felipe/NovaNav/Bin/novanav_v.0.0.2.tar.gz
+   ```
+   
+
+   On macOS to download - wget - just install it with Homebrew:
+
+   ```
+   brew install wget
+   ```
+
+### Unzip on macOS and Linux:
+
+1. **Download the file**: Download the `novanav_v.x.x.x.tar.gz` file from the repository.
+
+2. **Open the terminal**: Open the terminal on your operating system.
+
+3. **Navigate to the file location**: Use the `cd` command to navigate to the folder where you downloaded the `novanav_v.x.x.x.tar.gz` file.
+
+   ```
+   cd ./novanav 
+   ```
+- Unzip the file: Use the following command to unzip the .tar.gz file:
+
+   ```
+   tar -xzvf novanav_v.x.x.x.tar.gz
+   ```
+
+- Run the application: Once unzipped, you can run the application using the generated executable.
+
+  ```
+  ./novanav
+  ```
+
+Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your system!
+
+
+
 #### Future Goals
 #### 🚀 Future Goals
 

@@ -1,0 +1,13 @@
+Create the .tar.gz file:
+
+Navigate to the directory containing the generated executable (novanav).
+
+Run the following command to create the .tar.gz file:
+
+
+tar -czvf novanav.tar.gz novanav
+tar: The tool for archiving files in Unix systems.
+-czvf: Options to create a compressed file (c), with gzip compression (z), and with verbose output (v).
+novanav.tar.gz: The name of the .tar.gz file to be created.
+novanav: The name of the directory to be compressed.
+
