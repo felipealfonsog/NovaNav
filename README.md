@@ -103,6 +103,12 @@ If you want to use -wget- just copy/paste this line:
   ```
   ./novanav
   ```
+  
+- You can install it locally on your system:
+
+ ```
+ sudo cp novanav /usr/local/bin/novanav
+ ```
 
 Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your system!
 
