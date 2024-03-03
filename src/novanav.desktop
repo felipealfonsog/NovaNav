@@ -6,4 +6,4 @@ Comment=Lightweight browser for Linux - distraction-free.
 Exec=novanav
 Icon=novanav
 Terminal=false
-Categories=Internet;Utility;
+Categories=Network;WebBrowser;
