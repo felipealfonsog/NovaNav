@@ -9,7 +9,7 @@ The browser's clean interface and intuitive design make it ideal for users who p
 
 [![Download NovaNav](https://custom-icon-badges.demolab.com/badge/Download-NovaNav%20Browser-blue.svg?style=for-the-badge&logo=nnav-mini-icon&logoColor=white)](https://github.com/felipealfonsog/NovaNav?tab=readme-ov-file#installation)
 
-<!-->
+<!--
 [![Download NovaNav](https://img.shields.io/badge/Download-NovaNav%20Browser-red?style=for-the-badge&logo=internet)](https://github.com/felipealfonsog/NovaNav?tab=readme-ov-file#installation)
 -->
 
