@@ -2,7 +2,7 @@
 
 NovaNav: Lightweight browser* for Linux and macOS, delivering fast, distraction-free browsing experience. This is my own version for Arc Browser mostly for Linux.
 
- <img src="./images/icons/distraction.png" alt="NovaNav-Logo" width="75" height="75">
+ <img src="./images/icons/distraction.png" alt="NovaNav-Logo" width="68" height="68">
 
 NovaNav, inspired by Arc Browser, is a minimalist and distraction-free web browser developed using PyQt5 and QtWebEngineWidgets. It offers essential browsing functionalities while focusing on simplicity and efficiency. With NovaNav, users can effortlessly navigate the web, open multiple tabs, and adjust zoom settings for optimal viewing.
 The browser's clean interface and intuitive design make it ideal for users who prefer a clutter-free browsing experience. By minimizing distractions and prioritizing essential features, NovaNav aims to provide a seamless and enjoyable web browsing experience.
@@ -28,16 +28,6 @@ The browser's clean interface and intuitive design make it ideal for users who p
 [![Visual Studio Code](https://img.shields.io/badge/--007ACC?logo=visual%20studio%20code&logoColor=ffffff)](https://code.visualstudio.com/)
 
 
-#### Current Features
-#### 🚀 Current Features (Some might be in progress)
-
-- Tab Management: Open multiple tabs and switch between them seamlessly.
-- URL Navigation: Enter URLs directly or use the search bar to navigate to websites.
-- Zoom Control: Adjust zoom settings to customize the display of web pages.
-- User-friendly Interface: Clean and intuitive interface for easy navigation and usage.
-- Basic Settings: Customize settings such as homepage and default search engine.
-
-
 #### Screenshots
 
 [![View Screenshots](https://img.shields.io/badge/View-Screenshots-green)](#)
@@ -57,6 +47,18 @@ The browser's clean interface and intuitive design make it ideal for users who p
 <p align="center">
   <img src="./images/macos/sshot-2.png" alt="Screenshot" width="400" height="350">
 </p>
+
+
+
+#### Current Features
+#### 🚀 Current Features (Some might be in progress)
+
+- Tab Management: Open multiple tabs and switch between them seamlessly.
+- URL Navigation: Enter URLs directly or use the search bar to navigate to websites.
+- Zoom Control: Adjust zoom settings to customize the display of web pages.
+- User-friendly Interface: Clean and intuitive interface for easy navigation and usage.
+- Basic Settings: Customize settings such as homepage and default search engine.
+
 
 
 #### Download the Binary file (Executable for Linux)
