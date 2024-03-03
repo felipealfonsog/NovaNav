@@ -60,7 +60,7 @@ The browser's clean interface and intuitive design make it ideal for users who p
 
 https://aur.archlinux.org/packages/novanav
 
-FeatherPDF is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install FeatherPDF:
+NovaNav Browser is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install NovaNav:
 
 1. Make sure you have `yay` installed. If not, you can install it with the following command:
    
