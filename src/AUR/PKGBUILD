@@ -10,7 +10,7 @@ depends=('python' 'python-pip' 'python-pyqt5')
 
 source=("https://github.com/felipealfonsog/NovaNav/archive/refs/tags/v.${pkgver}.tar.gz")
 
-sha256sums=('264a6420ce72aeac0237695968c0f898bd60f60d929bcd4f418225f91221cd3d')
+sha256sums=('3421e9244355a4ae8125efa845f6ae78339924e26fe23414c456b9b4b1b59c11')
 
 prepare() {
   tar xf "v.${pkgver}.tar.gz" -C "$srcdir" --strip-components=1
