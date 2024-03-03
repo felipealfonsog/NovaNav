@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=0.0.3
+Type=Application
+Name=NovaNav Browser
+Comment=Lightweight browser for Linux - distraction-free.
+Exec=novanav
+Icon=novanav
+Terminal=false
+Categories=Internet;Utility;
