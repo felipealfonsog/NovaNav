@@ -143,7 +143,9 @@ Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your s
 
 #### To force the link and overwrite all conflicting files (Errors)
 
-**If you get this error while you are trying to run the software in the terminal or the software doesn't show up, follow the next steps on macOS or Linux: **
+[![Errors Reported](https://img.shields.io/badge/Errors_Reported-red)](#)
+
+**If you get this error while you are trying to run the software in the terminal or the software doesn't show up, follow the next steps on macOS or Linux:**
 
 E.g.:
 
@@ -214,8 +216,10 @@ Linking /usr/local/Cellar/pyqt@5/5.15.10... 5279 symlinks created.
 felipe@Felipes-MacBook-Air src % python3 novanav.py  
 ```
 
-Then should be fine with no errors. If you still have problems please let me know.
-Also if you want to install `pyrcc5` (which is not necessary but can help) just do a normal installation using pip: I am using Python 3.x.
+Then should be fine with no errors. 
+
+<sub>If you still have problems please let me know.
+Also if you want to install `pyrcc5` (which is not necessary but can help) just do a normal installation using pip: I am using Python 3.x.</sub>
 
 #### Future Goals
 #### 🚀 Future Goals
