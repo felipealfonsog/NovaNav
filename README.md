@@ -141,6 +141,8 @@ If you want to use -wget- just copy/paste this line:
 
 Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your system!
 
+#
+
 #### To force the link and overwrite all conflicting files (Errors)
 
 [![Errors Reported](https://img.shields.io/badge/Errors_Reported-red)](#)
@@ -220,6 +222,8 @@ Then should be fine with no errors.
 
 <sub>If you still have problems please let me know.
 Also if you want to install `pyrcc5` (which is not necessary but can help) just do a normal installation using pip: I am using Python 3.x.</sub>
+
+#
 
 #### Future Goals
 #### 🚀 Future Goals
