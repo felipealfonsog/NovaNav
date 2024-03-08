@@ -141,7 +141,81 @@ If you want to use -wget- just copy/paste this line:
 
 Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your system!
 
+#### To force the link and overwrite all conflicting files (Errors)
 
+**If you get this error while you are trying to run the software in the terminal or the software doesn't show up, follow the next steps on macOS or Linux: **
+
+E.g.:
+
+```
+felipe@Felipes-MacBook-Air src % python3 novanav.py
+Traceback (most recent call last):
+  File "/Users/felipe/Documents/Development/NovaNav/src/novanav.py", line 2, in <module>
+    from PyQt5.QtCore import QUrl, Qt
+ModuleNotFoundError: No module named 'PyQt5'
+```
+
+Install or reinstall pyqt5 with the following command in brew:
+E.g.:
+
+```
+felipe@Felipes-MacBook-Air src % brew install pyqt5
+==> Downloading https://formulae.brew.sh/api/formula.jws.json
+############################################################################################################ 100.0%
+Warning: Formula pyqt5 was renamed to pyqt@5.
+==> Downloading https://formulae.brew.sh/api/cask.jws.json
+############################################################################################################ 100.0%
+Warning: pyqt@5 5.15.10 is already installed, it's just not linked.
+To link this version, run:
+  brew link pyqt@5
+felipe@Felipes-MacBook-Air src % brew link pyqt@5
+Linking /usr/local/Cellar/pyqt@5/5.15.10... 
+Error: Could not symlink bin/pylupdate5
+Target /usr/local/bin/pylupdate5
+already exists. You may want to remove it:
+  rm '/usr/local/bin/pylupdate5'
+
+To force the link and overwrite all conflicting files:
+  brew link --overwrite pyqt@5
+
+To list all files that would be deleted:
+  brew link --overwrite pyqt@5 --dry-run
+
+```
+
+**So, if you want to delete all files that will be deleted by `brew link --overwrite`, use the `--dry-run` option
+Then run,**
+
+```
+rm '/usr/local/bin/pylupdate5'
+```
+
+```
+brew link --overwrite pyqt@5
+```
+
+```
+brew link --overwrite pyqt@5 --dry-run
+```
+The last one will show you what would delete if you proceed. If everything looks good, hit return. Then you should have PyQt5 properly installed.
+
+And then try running your program again.
+
+E.g.:
+
+```
+felipe@Felipes-MacBook-Air src % rm '/usr/local/bin/pylupdate5'
+felipe@Felipes-MacBook-Air src % brew link --overwrite pyqt@5
+
+Linking /usr/local/Cellar/pyqt@5/5.15.10... 5279 symlinks created.
+```
+
+```
+felipe@Felipes-MacBook-Air src % python3 novanav.py  
+```
+
+Then should be fine with no errors. If you still have problems please let me know.
+Also if you want to install `pyrcc5` (which is not necessary but can help) just do a normal installation using pip: I am using Python 3.x.
 
 #### Future Goals
 #### 🚀 Future Goals
