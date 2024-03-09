@@ -50,6 +50,12 @@ The browser's clean interface and intuitive design make it ideal for users who p
   <img src="./images/macos/sshot-2.png" alt="Screenshot" width="400" height="350">
 </p>
 
+#### Packages needed:
+
+  - python
+  - python-pip
+  - python-pyqt5
+  - python-pyqt5-webengine
 
 #### Installation
 #### Via AUR using YAY
