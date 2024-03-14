@@ -65,9 +65,9 @@ The browser's clean interface and intuitive design make it ideal for users who p
 #
 
 
-<details>
+<details open>
 
-<summary><strong>NovaNav written in Rust - beta/testing (experimental alternative in progress)*</strong></summary>
+<summary><strong>NovaNav written in Rust 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
 
 <br>
  Instructions for installation/compiling the program written in Rust*: 
