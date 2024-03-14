@@ -29,6 +29,7 @@ The browser's clean interface and intuitive design make it ideal for users who p
 [![Vim](https://img.shields.io/badge/--019733?logo=vim)](https://www.vim.org/)
 [![Visual Studio Code](https://img.shields.io/badge/--007ACC?logo=visual%20studio%20code&logoColor=ffffff)](https://code.visualstudio.com/)
 
+#
 
 #### Screenshots
 
@@ -37,18 +38,20 @@ The browser's clean interface and intuitive design make it ideal for users who p
 #### Screenshot Linux
 
 <p align="center">
-  <img src="./images/linux/v002/sshot-2.jpg" alt="Screenshot" width="400" height="350">
+  <img src="./images/linux/v002/sshot-2.jpg" alt="Screenshot Linux" width="400" height="350">
 </p>
 
 <p align="center">
-  <img src="./images/linux/v002/sshot-1.jpg" alt="Screenshot" width="400" height="350">
+  <img src="./images/linux/v002/sshot-1.jpg" alt="Screenshot Linux" width="400" height="350">
 </p>
 
 #### Screenshot macOS
 
 <p align="center">
-  <img src="./images/macos/sshot-2.png" alt="Screenshot" width="400" height="350">
+  <img src="./images/macos/sshot-2.png" alt="Screenshot macOS" width="400" height="350">
 </p>
+
+#
 
 #### Packages needed:
 
@@ -56,6 +59,8 @@ The browser's clean interface and intuitive design make it ideal for users who p
   - python-pip
   - python-pyqt5
   - python-pyqt5-webengine
+
+#
 
 #### Installation
 #### Via AUR using YAY
