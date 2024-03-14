@@ -223,9 +223,10 @@ Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your s
 
 #
 
+[![Errors Reported](https://img.shields.io/badge/Errors-Reported-red)](#)
+
 #### To force the link and overwrite all conflicting files (Errors)
 
-[![Errors Reported](https://img.shields.io/badge/Errors-Reported-red)](#)
 
 **If you get this error while you are trying to run the software in the terminal or the software doesn't show up, follow the next steps on macOS or Linux:**
 
