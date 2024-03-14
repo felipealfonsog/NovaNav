@@ -64,59 +64,6 @@ The browser's clean interface and intuitive design make it ideal for users who p
 
 #
 
-
-<details open>
-
-<summary><strong>NovaNav written in Rust 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
-
-<br>
- Instructions for installation/compiling the program written in Rust*: 
-
-```
-cargo install qt_widgets qt_core qt_webengine
-cargo add qt_widgets qt_core qt_webengine
-```
-
- Note: The `qt_webengine` package is not available for all platforms, so you may need to manually download the necessary libraries
-
-`package is required for the web browser functionality of NovaNav, but it's not included by default when installing via cargo. You can add it` 
-
-```
-[package]
-name = "novanav"
-version = "0.1.0"
-edition = "2024"
-
-[dependencies]
-qt_widgets = "0.7"
-qt_core = "0.7"
-qt_webengine = { git = "https://github.com/rust-qt/qmetaobject.git" }
-
-```
-
-Add that to the [dependencies] section of your `Cargo.toml` file:
-```
-vim Cargo.toml
-```
-
-To test it , run this command on terminal:
-
-```
-chmod +x run_novanav_rust.sh
-./run_novanav_rust.sh
-```
-
-```
-rustc src/rust/novanav.rs
-./novanav
-```
-
-<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
-
-</details>
-
-#
-
 #### Installation
 #### Via AUR using YAY
 
@@ -399,7 +346,61 @@ ctrl+t (New tab)
 ctrl+v (hide tabs for distraction-free)
 ctrl+q (quit)
 ```
+
 #
+
+<details open>
+
+<summary><strong>NovaNav written in Rust 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
+
+<br>
+ Instructions for installation/compiling the program written in Rust*: 
+
+```
+cargo install qt_widgets qt_core qt_webengine
+cargo add qt_widgets qt_core qt_webengine
+```
+
+ Note: The `qt_webengine` package is not available for all platforms, so you may need to manually download the necessary libraries
+
+`package is required for the web browser functionality of NovaNav, but it's not included by default when installing via cargo. You can add it` 
+
+```
+[package]
+name = "novanav"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+qt_widgets = "0.7"
+qt_core = "0.7"
+qt_webengine = { git = "https://github.com/rust-qt/qmetaobject.git" }
+
+```
+
+Add that to the [dependencies] section of your `Cargo.toml` file:
+```
+vim Cargo.toml
+```
+
+To test it , run this command on terminal:
+
+```
+chmod +x run_novanav_rust.sh
+./run_novanav_rust.sh
+```
+
+```
+rustc src/rust/novanav.rs
+./novanav
+```
+
+<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
+
+</details>
+
+#
+
 
 #### 🌟 Contact the Creator and Engineer Behind This Project
 
