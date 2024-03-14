@@ -225,7 +225,7 @@ Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your s
 
 #### To force the link and overwrite all conflicting files (Errors)
 
-[![Errors Reported](https://img.shields.io/badge/Errors_Reported-red)](#)
+[![Errors Reported](https://img.shields.io/badge/Errors-Reported-red)](#)
 
 **If you get this error while you are trying to run the software in the terminal or the software doesn't show up, follow the next steps on macOS or Linux:**
 
@@ -348,6 +348,9 @@ ctrl+q (quit)
 ```
 
 #
+
+[![NovaNav Unstable in Rust](https://img.shields.io/badge/NovaNav%20Unstable-In%20Rust-black)](#)
+
 
 <details open>
 
