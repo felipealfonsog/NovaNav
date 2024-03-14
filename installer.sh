@@ -184,7 +184,7 @@ install_icon_desk_file() {
     destination_dir="/usr/share"
 
     # Download the icon
-    curl -o nnav-iconlogo.png https://github.com/felipealfonsog/NovaNav/raw/main/src/nnav-iconlogo.png
+    curl -o nnav-iconlogo.png https://raw.githubusercontent.com/felipealfonsog/NovaNav/821d0ab8103a79dcefcd2458396d72a7304660ea/src/nnav-iconlogo.png
     # Install the icon to the pixmaps folder
     sudo install -Dm644 -p nnav-iconlogo.png "$destination_dir/pixmaps/novanav.png"
 
