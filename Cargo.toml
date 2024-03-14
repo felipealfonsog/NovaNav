@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-gio = "0.10"
+gio = "0.10.4"
 gtk = "0.10"
 web-view = "0.8"
 
