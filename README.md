@@ -87,7 +87,7 @@ This command will automatically fetch the package from AUR and handle the instal
 
 #### Bash Installer 🚀 for macOS and Linux
 
-[![Bash Version](https://img.shields.io/badge/Bash%20Version-Available-brightgreen)](#)
+[![Bash Installer Version](https://img.shields.io/badge/Bash%20Installer%20Version-Available-brightgreen)](#)
 
 #### To Install it: 
 
@@ -352,8 +352,6 @@ ctrl+q (quit)
 📄 License: BSD 3-Clause  
 
 ---
-
-Remember, the license is BSD 3-Clause. 🚀
 
 #
 
