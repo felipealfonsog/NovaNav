@@ -65,17 +65,18 @@ The browser's clean interface and intuitive design make it ideal for users who p
 #
 
 <summary>
+
 <details><strong>NovaNav written in Rust - beta/testing (experimental alternative in progress)*</strong></details>
 
-
-##### Instructions for installation/compiling the program written in Rust*: 
+<br>
+ Instructions for installation/compiling the program written in Rust*: 
 
 ```
 cargo install qt_widgets qt_core qt_webengine
 cargo add qt_widgets qt_core qt_webengine
 ```
 
-##### Note: The `qt_webengine` package is not available for all platforms, so you may need to manually download the necessary libraries
+ Note: The `qt_webengine` package is not available for all platforms, so you may need to manually download the necessary libraries
 
 `package is required for the web browser functionality of NovaNav, but it's not included by default when installing via cargo. You can add it` 
 
