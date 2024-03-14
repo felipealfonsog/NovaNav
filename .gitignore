@@ -1,1 +1,10 @@
 novanav-env/
+
+
+# Added by cargo
+
+target/
+
+/src/rust/*
+!/src/rust/*.rs
+
