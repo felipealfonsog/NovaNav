@@ -225,10 +225,12 @@ Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your s
 
 [![Errors Reported](https://img.shields.io/badge/Errors-Reported-red)](#)
 
-#### To force the link and overwrite all conflicting files (Errors)
+#### Errors & Fixing 
 
 
-**If you get this error while you are trying to run the software in the terminal or the software doesn't show up, follow the next steps on macOS or Linux:**
+To force the link and overwrite all conflicting files (Errors).
+
+If you get this error while you are trying to run the software in the terminal or the software doesn't show up, follow the next steps on macOS or Linux:
 
 E.g.:
 
@@ -350,6 +352,8 @@ ctrl+q (quit)
 
 #
 
+#### NovaNav Browser written in Rust (Experimental)*
+
 [![NovaNav Unstable in Rust](https://img.shields.io/badge/NovaNav%20Unstable-In%20Rust-black)](#)
 
 
@@ -358,29 +362,22 @@ ctrl+q (quit)
 <summary><strong>NovaNav written in Rust 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
 
 <br>
+
+Important library to install:
+
+```
+sudo pacman -S libsoup
+```
+
+In Arch, add this line to .bashrc:
+
+```
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig:$PKG_CONFIG_PATH
+```
+
  Instructions for installation/compiling the program written in Rust*: 
 
-```
-cargo install qt_widgets qt_core qt_webengine
-cargo add qt_widgets qt_core qt_webengine
-```
 
- Note: The `qt_webengine` package is not available for all platforms, so you may need to manually download the necessary libraries
-
-`package is required for the web browser functionality of NovaNav, but it's not included by default when installing via cargo. You can add it` 
-
-```
-[package]
-name = "novanav"
-version = "0.1.0"
-edition = "2024"
-
-[dependencies]
-qt_widgets = "0.7"
-qt_core = "0.7"
-qt_webengine = { git = "https://github.com/rust-qt/qmetaobject.git" }
-
-```
 
 Add that to the [dependencies] section of your `Cargo.toml` file:
 ```
@@ -393,6 +390,7 @@ To test it , run this command on terminal:
 chmod +x run_novanav_rust.sh
 ./run_novanav_rust.sh
 ```
+Compiling: 
 
 ```
 rustc src/rust/novanav.rs

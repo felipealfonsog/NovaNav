@@ -1,4 +1,5 @@
 #!/bin/bash
 
-cargo build --release
-./target/release/NovaNav
+#cargo run
+#cargo run --release --bin novanav
+cargo run

@@ -1,9 +1,17 @@
 [package]
 name = "novanav"
 version = "0.1.0"
-edition = "2024"
+edition = "2018"
 
 [dependencies]
-qt_widgets = "0.7"
-qt_core = "0.7"
-qt_webengine = { git = "https://github.com/rust-qt/qmetaobject.git" }
+gio = "0.19"
+web-view = "0.7"
+gtk = "0.18"
+
+
+
+
+[[bin]]
+name = "novanav"
+path = "src/rust/novanav.rs"
+
