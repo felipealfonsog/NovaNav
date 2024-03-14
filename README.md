@@ -349,7 +349,8 @@ ctrl+q (quit)
 
 #
 
-[![NovaNav Unstable in Rust](https://img.shields.io/badge/NovaNav%20Unstable-In%20Rust-red)](#)
+[![NovaNav Unstable in Rust](https://img.shields.io/badge/NovaNav%20Unstable-In%20Rust-black)](#)
+
 
 <details open>
 
