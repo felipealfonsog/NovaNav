@@ -1,52 +1,69 @@
 use gtk::prelude::*;
-use gio::prelude::*;
+use gtk::{Application, ApplicationWindow, Notebook, Label, AccelGroup, AccelFlags};
 
 fn main() {
-    gtk::init().expect("Failed to initialize GTK.");
-
-    let app = gtk::Application::new(
+    // Initialize GTK application
+    let app = Application::new(
         Some("com.example.web_browser"),
         gio::ApplicationFlags::empty(),
-    );
+    )
+    .expect("Failed to initialize GTK application");
 
-    match app {
-        Ok(app) => {
-            app.connect_activate(|app| {
-                let window = gtk::ApplicationWindow::new(app);
-                window.set_default_size(800, 600);
+    // Connect to the activate signal to create the window
+    app.connect_activate(|app| {
+        // Create the main window
+        let window = ApplicationWindow::new(app);
+        window.set_title("NovaNav");
+        window.set_default_size(600, 400);
 
-                let notebook = gtk::Notebook::new();
-                window.add(&notebook);
+        // Create a notebook to hold the tabs
+        let notebook = Notebook::new();
+        window.set_child(Some(&notebook));
 
-                window.connect_key_release_event(|_, event| {
-                    if let Some(keyval) = event.keyval() {
-                        if let Some(state) = event.state() {
-                            let t_key = gdk::keys::constants::T;
-                            let minus_key = gdk::keys::constants::minus;
+        // Create an accelerator group to handle keyboard shortcuts
+        let accel_group = AccelGroup::new();
+        window.add_accel_group(&accel_group);
 
-                            if keyval == t_key && state.contains(gdk::ModifierType::CONTROL_MASK) {
-                                let tab_label = gtk::Label::new(Some("New Tab"));
-                                let tab_content = gtk::Box::new(gtk::Orientation::Vertical, 0);
-                                notebook.append_page(&tab_content, Some(&tab_label));
-                                window.show_all();
-                                return gtk::Inhibit(true);
-                            } else if keyval == minus_key && state.contains(gdk::ModifierType::CONTROL_MASK) {
-                                if let Some(page_num) = notebook.current_page() {
-                                    notebook.remove_page(Some(page_num));
-                                    window.show_all();
-                                }
-                                return gtk::Inhibit(true);
-                            }
-                        }
-                    }
-                    gtk::Inhibit(false)
-                });
+        // Shortcut to open a new tab (Ctrl + T)
+        let accel_key_t = gdk::keys::constants::T;
+        accel_group.connect_accel_closure(Some(&accel_key_t), false, move |_| {
+            // Create a new label for the tab
+            let label = Label::new(Some("New Tab"));
 
-                window.show_all();
-            });
+            // Create a new page for the notebook
+            let tab_content = gtk::Box::new(gtk::Orientation::Vertical, 0);
+            tab_content.add(&Label::new(Some("New tab content")));
 
-            app.run(&[]);
-        }
-        Err(err) => eprintln!("Failed to initialize the application: {:?}", err),
-    }
+            // Append the new tab to the notebook
+            notebook.append_page(&tab_content, Some(&label));
+
+            // Show all widgets
+            window.show_all();
+
+            // Return true to stop further handling
+            Inhibit(false)
+        });
+
+        // Shortcut to close the current tab (Ctrl + W)
+        let accel_key_w = gdk::keys::constants::W;
+        accel_group.connect_accel_closure(Some(&accel_key_w), false, move |_| {
+            // Get the current page index
+            if let Some(page_num) = notebook.current_page() {
+                // Remove the current page from the notebook
+                notebook.remove_page(Some(page_num));
+            }
+
+            // Return true to stop further handling
+            Inhibit(false)
+        });
+
+        // Add the notebook to the window
+        window.set_child(Some(&notebook));
+
+        // Show the window
+        window.show();
+    });
+
+    // Run the application
+    app.run();
 }
