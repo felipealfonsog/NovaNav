@@ -7,10 +7,10 @@ NovaNav: Lightweight browser* for Linux and macOS, delivering fast, distraction-
 NovaNav, inspired by Arc Browser, is a minimalist and distraction-free web browser developed using PyQt5 and QtWebEngineWidgets. It offers essential browsing functionalities while focusing on simplicity and efficiency. With NovaNav, users can effortlessly navigate the web, open multiple tabs, and adjust zoom settings for optimal viewing.
 The browser's clean interface and intuitive design make it ideal for users who prefer a clutter-free browsing experience. By minimizing distractions and prioritizing essential features, NovaNav aims to provide a seamless and enjoyable web browsing experience.
 
-[![Download NovaNav](https://custom-icon-badges.demolab.com/badge/Download-NovaNav%20Browser-blue.svg?style=for-the-badge&logo=nnav-mini-icon&logoColor=white)](https://github.com/felipealfonsog/NovaNav#installation)
+[![Download Install NovaNav](https://custom-icon-badges.demolab.com/badge/Install-NovaNav%20Browser-blue.svg?style=for-the-badge&logo=nnav-mini-icon&logoColor=white)](https://github.com/felipealfonsog/NovaNav#installation)
 
 <!--
-[![Download NovaNav](https://img.shields.io/badge/Download-NovaNav%20Browser-red?style=for-the-badge&logo=internet)](https://github.com/felipealfonsog/NovaNav?tab=readme-ov-file#installation)
+[![Install NovaNav](https://img.shields.io/badge/Install-NovaNav%20Browser-purple?style=for-the-badge)](https://github.com/felipealfonsog/NovaNav#installation)
 -->
 
 <sub>* This is currently an experimental phase where the primary focus is on making the system functional and establishing a practical and logical pathway that aligns with both my vision and the project's goals. It might contain errors, bugs, etc. Many other non-core elements of the project are considered secondary.</sub>
@@ -60,6 +60,8 @@ The browser's clean interface and intuitive design make it ideal for users who p
   - python-pyqt5
   - python-pyqt5-webengine
 
+[![Install NovaNav](https://img.shields.io/badge/Install-NovaNav%20Browser-purple?style=for-the-badge)](https://github.com/felipealfonsog/NovaNav#installation)
+
 #
 
 ##### NovaNav written in Rust - beta/testing (experimental alternative in progress)*
@@ -71,9 +73,29 @@ cargo install qt_widgets qt_core qt_webengine
 cargo add qt_widgets qt_core qt_webengine
 ```
 
-**Note:** The `qt_webengine` package is not available for all platforms, so you may need to manually download the necessary libraries
+##### Note: The `qt_webengine` package is not available for all platforms, so you may need to manually download the necessary libraries
 
 `package is required for the web browser functionality of NovaNav, but it's not included by default when installing via cargo. You can add it` 
+
+```
+[package]
+name = "novanav"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+qt_widgets = "0.7"
+qt_core = "0.7"
+qt_webengine = { git = "https://github.com/rust-qt/qmetaobject.git" }
+
+```
+
+Add that to the [dependencies] section of your `Cargo.toml` file:
+```
+vim Cargo.toml
+```
+
+To test it , run this command on terminal:
 
 ```
 chmod +x run_novanav_rust.sh
@@ -85,7 +107,7 @@ rustc src/rust/novanav.rs
 ./novanav
 ```
 
-<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python!</sub>
+<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
 
 #
 
