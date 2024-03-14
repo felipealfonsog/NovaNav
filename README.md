@@ -64,9 +64,10 @@ The browser's clean interface and intuitive design make it ideal for users who p
 
 #
 
-<summary>
 
-<details><strong>NovaNav written in Rust - beta/testing (experimental alternative in progress)*</strong></details>
+<details>
+
+<summary><strong>NovaNav written in Rust - beta/testing (experimental alternative in progress)*</strong></summary>
 
 <br>
  Instructions for installation/compiling the program written in Rust*: 
@@ -112,7 +113,7 @@ rustc src/rust/novanav.rs
 
 <sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
 
-</summary>
+</details>
 
 #
 
