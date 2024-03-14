@@ -64,9 +64,11 @@ The browser's clean interface and intuitive design make it ideal for users who p
 
 #
 
-##### NovaNav written in Rust - beta/testing (experimental alternative in progress)*
+<summary>
+<details><strong>NovaNav written in Rust - beta/testing (experimental alternative in progress)*</strong></details>
 
-Instructions for installation/compiling the program written in Rust*: 
+
+##### Instructions for installation/compiling the program written in Rust*: 
 
 ```
 cargo install qt_widgets qt_core qt_webengine
@@ -108,6 +110,8 @@ rustc src/rust/novanav.rs
 ```
 
 <sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
+
+</summary>
 
 #
 
