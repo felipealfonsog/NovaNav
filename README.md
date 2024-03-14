@@ -349,6 +349,8 @@ ctrl+q (quit)
 
 #
 
+[![NovaNav Unstable in Rust](https://img.shields.io/badge/NovaNav%20Unstable-In%20Rust-red)](#)
+
 <details open>
 
 <summary><strong>NovaNav written in Rust 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
