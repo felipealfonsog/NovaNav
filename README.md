@@ -145,7 +145,7 @@ If you want to update NovaNav (novanav) in your system, re-run the script:
    ```
 Please note that if you encounter any issues or have suggestions, feel free to raise an issue on the [NovaNav repository](https://github.com/felipealfonsog/NovaNav/issues). Your feedback is invaluable!
 
-Thank you for joining me on this journey, and I hope GitSyncMasters brings value to your life and workflow. Let's continue making technology accessible and enjoyable for everyone!
+Thank you for joining me on this journey, and I hope it brings value to your life and workflow. Let's continue making technology accessible and enjoyable for everyone!
 
 #
 
