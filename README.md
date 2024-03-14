@@ -60,7 +60,7 @@ The browser's clean interface and intuitive design make it ideal for users who p
   - python-pyqt5
   - python-pyqt5-webengine
 
-[![Install NovaNav](https://img.shields.io/badge/Install-NovaNav%20Browser-purple?style=for-the-badge)](https://github.com/felipealfonsog/NovaNav#installation)
+[![Install NovaNav](https://img.shields.io/badge/Install-NovaNav%20Browser-purple)](https://github.com/felipealfonsog/NovaNav#installation)
 
 #
 
