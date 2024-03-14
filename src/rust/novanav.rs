@@ -1,47 +1,44 @@
-extern crate gio;
-extern crate gtk;
-extern crate web_view;
-
-use gio::prelude::*;
 use gtk::prelude::*;
+use gio::prelude::*;
 use std::cell::RefCell;
 use std::rc::Rc;
 use web_view::*;
 
-
 fn main() {
-    // Initialize GTK
-    gtk::init().expect("Failed to initialize GTK.");
+    // Inicializar GTK
+    gtk::init().expect("Fallo al inicializar GTK.");
 
-    // Create the application
+    // Crear la aplicación
     let app = gtk::Application::new(
         Some("com.example.web_browser"),
-        gio::ApplicationFlags::FLAGS_NONE,
+        gio::ApplicationFlags::empty(),
     )
-    .expect("Initialization failed...");
+    .expect("Fallo al inicializar la aplicación...");
 
-    // Connect to activate event
+    // Conectar al evento activate
     app.connect_activate(|app| {
-        // Create the main window
+        // Crear la ventana principal
         let window = gtk::ApplicationWindow::new(app);
         window.set_default_size(800, 600);
 
-        // Create notebook for tabs
+        // Crear el notebook para las pestañas
         let notebook = gtk::Notebook::new();
         window.add(&notebook);
 
-        // Connect signals for keyboard shortcuts
+        // Conectar señales para los atajos de teclado
         let window_clone = window.clone();
         window.connect_key_press_event(move |_, key| {
             if key.get_keyval() == gdk::keys::constants::t && key.get_state().contains(gdk::ModifierType::CONTROL_MASK) {
-                let tab_label = gtk::Label::new("New Tab");
-                let webview = Rc::new(RefCell::new(web_view::builder().title("New Tab").build().unwrap()));
+                let tab_label = gtk::Label::new("Nueva Pestaña");
+                let webview = Rc::new(RefCell::new(web_view::WebViewBuilder::new().title("Nueva Pestaña").build().unwrap()));
                 let tab_content = gtk::Box::new(gtk::Orientation::Vertical, 0);
                 tab_content.pack_start(&webview.borrow().gtk_widget().clone(), true, true, 0);
                 let close_button = gtk::Button::new_with_label("x");
                 let notebook_clone = notebook.clone();
                 close_button.connect_clicked(move |_| {
-                    notebook_clone.remove_page(Some(notebook_clone.page_num(&tab_content)));
+                    if let Some(page_num) = notebook_clone.page_num(&tab_content) {
+                        notebook_clone.remove_page(Some(page_num));
+                    }
                 });
                 tab_content.pack_end(&close_button, false, true, 0);
                 notebook.append_page(&tab_content, Some(&tab_label));
@@ -59,10 +56,10 @@ fn main() {
             }
         });
 
-        // Show everything
+        // Mostrar todo
         window.show_all();
     });
 
-    // Run the application
+    // Ejecutar la aplicación
     app.run(&[]);
 }

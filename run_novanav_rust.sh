@@ -1,3 +1,5 @@
 #!/bin/bash
 
-cargo run --release --bin novanav
+#cargo run
+#cargo run --release --bin novanav
+cargo run
