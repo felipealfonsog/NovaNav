@@ -91,7 +91,7 @@ This command will automatically fetch the package from AUR and handle the instal
 
 #### To Install it: 
 
-To install GitSyncMaster, simply run the installer script available [here](https://github.com/felipealfonsog/NovaNav/raw/main/installer.sh).
+To install NovaNav, simply run the installer script available [here](https://github.com/felipealfonsog/NovaNav/raw/main/installer.sh).
 
 Or just Copy - Paste in your terminal and use -curl- to start downloading the installer:
 
