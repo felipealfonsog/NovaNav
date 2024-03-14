@@ -83,6 +83,73 @@ NovaNav Browser is available on AUR (Arch User Repository), and it can be instal
 This command will automatically fetch the package from AUR and handle the installation process for you.
 
 
+#
+
+#### Bash Installer 🚀 for macOS and Linux
+
+[![Bash Version](https://img.shields.io/badge/Bash%20Version-Available-brightgreen)](#)
+
+#### To Install it: 
+
+To install GitSyncMaster, simply run the installer script available [here](https://github.com/felipealfonsog/NovaNav/raw/main/installer.sh).
+
+Or just Copy - Paste in your terminal and use -curl- to start downloading the installer:
+
+   ```
+   curl -O https://raw.githubusercontent.com/felipealfonsog/NovaNav/main/installer.sh
+   ```
+
+If you want to use -wget- just copy/paste this line:
+
+   ```
+   wget https://github.com/felipealfonsog/NovaNav/raw/main/installer.sh
+   ```
+
+   On macOS to download - wget - just install it with Homebrew:
+
+   ```
+   brew install wget
+   ```
+
+#### Important note when installing:
+
+If you encounter issues executing the file in the terminal, like this message "-bash: ./installer.sh: Permission denied", follow these simple steps to fix it:
+
+1. Open your terminal.
+2. Navigate to the directory where the installer script is located using the `cd` command.
+3. Run the following command to grant execute permission to the installer script:
+
+   ```
+   chmod +x installer.sh
+   ```
+   
+4. Now you can run the installer without any problems.
+
+   ```
+   ./installer.sh
+   ```
+   NOTE: The script will ask for -sudo permissions-. Just simply type in macOS your macOS user password, and in Linux your -sudo- password.
+
+Now type 'novanav' in the terminal and enjoy using NovaNav Browser! 😊🚀
+
+***If you're using Arch Linux, you can find NovaNav Browser in your program menu!.***
+
+Feel free to reach out if you need any further assistance!
+
+#### Updating with the script: 
+
+If you want to update NovaNav (novanav) in your system, re-run the script:
+
+   ```
+   ./installer.sh
+   ```
+Please note that if you encounter any issues or have suggestions, feel free to raise an issue on the [NovaNav repository](https://github.com/felipealfonsog/NovaNav/issues). Your feedback is invaluable!
+
+Thank you for joining me on this journey, and I hope GitSyncMasters brings value to your life and workflow. Let's continue making technology accessible and enjoyable for everyone!
+
+#
+
+
 #### Current Features
 #### 🚀 Current Features (Some might be in progress)
 
@@ -92,9 +159,9 @@ This command will automatically fetch the package from AUR and handle the instal
 - User-friendly Interface: Clean and intuitive interface for easy navigation and usage.
 - Basic Settings: Customize settings such as homepage and default search engine.
 
+#
 
-
-#### Download the Binary file (Executable for Linux)
+#### Download the Binary file (Executable for Linux) v.0.0.2
 
 
 Or just Copy - Paste in your terminal and use -curl- to start downloading the binary file:
@@ -263,6 +330,8 @@ Runt it with:
 python3 ./src/novanav.py
 ```
 
+#
+
 #### How-to - NovaNav
 
 ```
@@ -270,6 +339,23 @@ ctrl+t (New tab)
 ctrl+v (hide tabs for distraction-free)
 ctrl+q (quit)
 ```
+#
+
+#### 🌟 Contact the Creator and Engineer Behind This Project
+
+---
+
+👨‍💻 **Felipe Alfonso González**  
+📧 Email: [f.alfonso@res-ear.ch](mailto:f.alfonso@res-ear.ch)  
+🐦 Twitter: [@felipealfonsog](https://twitter.com/felipealfonsog)  
+🔗 GitHub: [felipealfonsog](https://github.com/felipealfonsog)  
+📄 License: BSD 3-Clause  
+
+---
+
+Remember, the license is BSD 3-Clause. 🚀
+
+#
 
 #### 🤝 Support and Contributions
 
@@ -284,6 +370,7 @@ If you find this project helpful and would like to support its development, ther
 [![GitHub Sponsors](https://img.shields.io/badge/Sponsor%20me%20on-GitHub-%23EA4AAA?style=flat-square&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/felipealfonsog)
 
 Your support and contributions are greatly appreciated! Thank you for your help in making this project better. If you need to mail me, this is the way: f.alfonso@res-ear.ch (I'm Felipe, the Computer Science Engineer behind this idea. Cheers!)
+
 
 #### 📄 License
 
