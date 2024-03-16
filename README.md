@@ -352,12 +352,65 @@ ctrl+q (quit)
 
 #
 
-#### NovaNav Browser written in Rust (Experimental)*
+#### NovaNav Browser written in C++ & Rust (Experimental)*
 
-[![NovaNav Unstable in Rust](https://img.shields.io/badge/NovaNav%20Unstable-In%20Rust-black)](#)
+[![NovaNav Unstable in C++ or Rust](https://img.shields.io/badge/NovaNav%20Unstable-In%20Rust%20C++-black)](#)
 
 
-<details open>
+
+
+<details>
+
+<summary><strong>NovaNav written in C++ 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
+
+<br>
+
+ Instructions for Compiling from Source
+
+Prerequisites
+
+Make sure you have the following dependencies installed on your system:
+
+- Qt 5 Base
+- Qt 5 WebEngine
+
+Compilation Steps
+
+1. Clone the NovaNav repository from GitHub:
+
+```
+git clone https://github.com/felipealfonsog/NovaNav.git
+```
+
+Navigate to the directory containing the source code:
+
+```
+cd NovaNav/src/cpp
+```
+
+Configure the build using qmake. You can adjust parameters as needed:
+
+```
+qmake PREFIX=/usr/local
+```
+
+Compile the source code:
+
+```
+make
+```
+
+Once compilation is complete, the novanav binary will be generated in the current directory.
+
+Installation
+To install NovaNav system-wide after compilation, you can use the provided PKGBUILD or manually copy the binary to /usr/local/bin, the icon to /usr/share/pixmaps, and the .desktop file to /usr/share/applications, located in the 'src' folder.
+
+<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
+
+</details>
+
+
+<details>
 
 <summary><strong>NovaNav written in Rust 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
 
@@ -400,6 +453,8 @@ rustc src/rust/novanav.rs
 <sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
 
 </details>
+
+
 
 #
 
