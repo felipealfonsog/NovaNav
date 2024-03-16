@@ -8,3 +8,9 @@ target/
 /src/rust/*
 !/src/rust/*.rs
 
+
+# C++ version
+
+src/cpp/novanav
+src/cpp/novanav.o
+
