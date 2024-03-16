@@ -80,7 +80,7 @@ Python version:
 [![AUR](https://img.shields.io/aur/version/novanav-cpp)](https://aur.archlinux.org/packages/novanav-cpp)
 
 <!-- 
-[![AUR](https://img.shields.io/aur/version/novanav.svg)](https://aur.archlinux.org/packages/novanav)
+[![AUR](https://img.shields.io/aur/version/novanav-cpp.svg)](https://aur.archlinux.org/packages/novanav-cpp)
 -->
 
 https://aur.archlinux.org/packages/novanav-cpp
