@@ -119,15 +119,29 @@ private:
     QShortcut *shortcut_zoom_out;
     QShortcut *shortcut_toggle_titles;
 
+
 void create_new_tab(const QString &url) {
     QWebEngineView *browser = new QWebEngineView();
+
+
+
+    // Habilitar JavaScript
+    browser->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
 
     if (!url.startsWith("http"))
         browser->setUrl(QUrl("http://" + url));
     else
         browser->setUrl(QUrl(url));
 
-    browser->page()->profile()->setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36");
+// Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+// browser->page()->profile()->setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
+   // browser->page()->profile()->setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36");
+    browser->page()->profile()->setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36");
+
+
+    // sqDebug() << "User-Agent:" << browser->page()->profile()->httpUserAgent();
+
+
     connect(browser, &QWebEngineView::titleChanged, this, [=](const QString &title) {
         set_tab_title(browser, title.left(20));
     });
