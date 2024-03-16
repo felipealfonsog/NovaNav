@@ -121,27 +121,33 @@ private:
 
 
 void create_new_tab(const QString &url) {
-    QWebEngineView *browser = new QWebEngineView();
+    // Creamos un nuevo perfil de navegación
+    QWebEngineProfile *profile = new QWebEngineProfile("CustomProfile");
 
-
-
-    // Habilitar JavaScript
-    browser->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-
-    if (!url.startsWith("http"))
-        browser->setUrl(QUrl("http://" + url));
-    else
-        browser->setUrl(QUrl(url));
+    // Modificamos el User-Agent en ciertos sitios web
+    profile->setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
 
 // Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
 // browser->page()->profile()->setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
    // browser->page()->profile()->setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36");
-    browser->page()->profile()->setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36");
+   //  browser->page()->profile()->setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36");
 
 
     // sqDebug() << "User-Agent:" << browser->page()->profile()->httpUserAgent();
 
 
+
+    // Creamos el QWebEngineView y establecemos la URL
+    QWebEngineView *browser = new QWebEngineView();
+    if (!url.startsWith("http"))
+        browser->setUrl(QUrl("http://" + url));
+    else
+        browser->setUrl(QUrl(url));
+
+    // Habilitamos JavaScript
+    browser->page()->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+
+    // Conectamos señales de cambio de título y URL
     connect(browser, &QWebEngineView::titleChanged, this, [=](const QString &title) {
         set_tab_title(browser, title.left(20));
     });
@@ -153,6 +159,7 @@ void create_new_tab(const QString &url) {
         }
     });
 
+    // Agregamos el QWebEngineView a la pestaña
     tab_widget->addTab(browser, "");
     browser->setZoomFactor(0.67); // Zoom por defecto
 }
