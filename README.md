@@ -4,7 +4,7 @@ NovaNav: Lightweight browser* for Linux and macOS, delivering fast, distraction-
 
  <img src="./images/icons/icon-small.png" alt="NovaNav-Logo" width="68" height="68">
 
-NovaNav, inspired by Arc Browser, is a minimalist and distraction-free web browser developed using PyQt5 and QtWebEngineWidgets. It offers essential browsing functionalities while focusing on simplicity and efficiency. With NovaNav, users can effortlessly navigate the web, open multiple tabs, and adjust zoom settings for optimal viewing.
+NovaNav, inspired by Arc Browser, is a minimalist and distraction-free web browser. It offers essential browsing functionalities while focusing on simplicity and efficiency. With NovaNav, users can effortlessly navigate the web, open multiple tabs, and adjust zoom settings for optimal viewing.
 The browser's clean interface and intuitive design make it ideal for users who prefer a clutter-free browsing experience. By minimizing distractions and prioritizing essential features, NovaNav aims to provide a seamless and enjoyable web browsing experience.
 
 [![Download Install NovaNav](https://custom-icon-badges.demolab.com/badge/Install-NovaNav%20Browser-blue.svg?style=for-the-badge&logo=nnav-mini-icon&logoColor=white)](https://github.com/felipealfonsog/NovaNav#installation)
@@ -55,6 +55,16 @@ The browser's clean interface and intuitive design make it ideal for users who p
 
 #### Packages needed:
 
+If you're using Arch Linux, you can find NovaNav Browser in your program menu after installation!
+
+C++ Version:
+
+  - qt5-base
+  - qt5-webengine
+
+
+Python version: 
+
   - python
   - python-pip
   - python-pyqt5
@@ -65,7 +75,34 @@ The browser's clean interface and intuitive design make it ideal for users who p
 #
 
 #### Installation
-#### Via AUR using YAY
+#### Via AUR using YAY (Version written in C++)
+
+[![AUR](https://img.shields.io/aur/version/novanav-cpp)](https://aur.archlinux.org/packages/novanav-cpp)
+
+<!-- 
+[![AUR](https://img.shields.io/aur/version/novanav.svg)](https://aur.archlinux.org/packages/novanav)
+-->
+
+https://aur.archlinux.org/packages/novanav-cpp
+
+NovaNav Browser is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install NovaNav:
+
+1. Make sure you have `yay` installed. If not, you can install it with the following command:
+   
+   ```
+   sudo pacman -S yay
+   ```
+   Once yay is installed, you can install by running the following command:
+   
+   ```
+   yay -S novanav-cpp
+   ```
+This command will automatically fetch the package from AUR and handle the installation process for you.
+You can find NovaNav Browser in your program menu!
+
+#
+
+#### Via AUR using YAY (Version written in Python)
 
 [![AUR](https://img.shields.io/aur/version/novanav)](https://aur.archlinux.org/packages/novanav)
 
@@ -88,11 +125,11 @@ NovaNav Browser is available on AUR (Arch User Repository), and it can be instal
    yay -S novanav
    ```
 This command will automatically fetch the package from AUR and handle the installation process for you.
-
+You can find NovaNav Browser in your program menu!
 
 #
 
-#### Bash Installer 🚀 for macOS and Linux
+#### Bash Installer 🚀 for macOS and Linux (Version written in Python)
 
 [![Bash Installer Version](https://img.shields.io/badge/Bash%20Installer%20Version-Available-brightgreen)](#)
 
