@@ -225,7 +225,10 @@ Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your s
 
 [![Errors Reported](https://img.shields.io/badge/Errors-Reported-red)](#)
 
-#### Errors & Fixing 
+<details>
+
+<summary>Errors & Fixing</summary>
+<br>
 
 
 To force the link and overwrite all conflicting files (Errors).
@@ -305,6 +308,8 @@ Then should be fine with no errors.
 
 <sub>If you still have problems please let me know.
 Also if you want to install `pyrcc5` (which is not necessary but can help) just do a normal installation using pip: I am using Python 3.x.</sub>
+
+</details>
 
 #
 
