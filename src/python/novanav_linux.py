@@ -54,6 +54,9 @@ class NovaNav(QMainWindow):
 
         # Add navigation buttons
         self.add_navigation_buttons()
+        
+         # Establece la altura mínima de la ventana principal
+        self.setMinimumHeight(800)  # Ajusta la altura mínima según preferencia
 
     def add_navigation_buttons(self):
         navigation_layout = QHBoxLayout()

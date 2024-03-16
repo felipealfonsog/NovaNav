@@ -38,11 +38,11 @@ The browser's clean interface and intuitive design make it ideal for users who p
 #### Screenshot Linux
 
 <p align="center">
-  <img src="./images/linux/v002/sshot-2.jpg" alt="Screenshot Linux" width="400" height="350">
+  <img src="./images/novanav-cpp/sshot-linux-novanav-cpp.png" alt="Screenshot Linux" width="400" height="350">
 </p>
 
 <p align="center">
-  <img src="./images/linux/v002/sshot-1.jpg" alt="Screenshot Linux" width="400" height="350">
+  <img src="./images/novanav-cpp/sshot-linux-novanav-cpp_2.png" alt="Screenshot Linux" width="400" height="350">
 </p>
 
 #### Screenshot macOS
