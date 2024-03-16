@@ -227,7 +227,7 @@ Enjoy browsing!: Now you can enjoy NovaNav - Super Lightweight Browser on your s
 
 <details>
 
-<summary>Errors & Fixing</summary>
+<summary><strong>Errors & Fixing</strong></summary>
 <br>
 
 
