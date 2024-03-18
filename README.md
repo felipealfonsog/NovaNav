@@ -275,9 +275,9 @@ If you get this error while you are trying to run the software in the terminal o
 E.g.:
 
 ```
-user@host src % python3 novanav.py
+user@host src % python3 novanav_linux.py
 Traceback (most recent call last):
-  File "/Users/user/Documents/Development/NovaNav/src/novanav.py", line 2, in <module>
+  File "/Users/user/NovaNav/src/novanav_linux.py", line 2, in <module>
     from PyQt5.QtCore import QUrl, Qt
 ModuleNotFoundError: No module named 'PyQt5'
 ```
