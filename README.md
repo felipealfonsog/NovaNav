@@ -397,7 +397,7 @@ ctrl+q (quit)
 
 #### NovaNav Browser written in C++ & Rust (Experimental)*
 
-[![NovaNav Unstable in C++ or Rust](https://img.shields.io/badge/NovaNav%20Unstable-In%20Rust%20C++-black)](#)
+[![NovaNav Under development in C++ (mostly) & Rust](https://img.shields.io/badge/NovaNav%20Unstable-In%20C++%20&%20Rust-black)](#)
 
 
 
