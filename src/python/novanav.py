@@ -112,16 +112,24 @@ class NovaNav(QMainWindow):
         
         credits_label = QLabel(
             "Credits:\n"
-            "Engineer: Felipe Alfonso Gonzalez\n"
+            "Computer Science Engineer: Felipe Alfonso González\n"
             "GitHub: github.com/felipealfonsog\n"
             "\n"
+            "--------------------------------------------------\n"
             "This software is licensed under the BSD 3-Clause License.\n"
             "For details, see: https://opensource.org/licenses/BSD-3-Clause\n"
             "\n"
             "Usage restrictions:\n"
             "For any inquiries about usage restrictions, please contact:\n"
-            "Felipe Alfonso Gonzalez\n"
+            "Felipe Alfonso González\n"
             "Email: f.alfonso@res-ear.ch\n"
+            "\n"
+            "--------------------------------------------------\n"
+            "FAQ:\n"
+            "\n"
+            "ctrl+t (New tab)\n"
+            "ctrl+v (hide tabs for distraction-free)\n"
+            "ctrl+q (quit)\n"
         )
         
         credits_label.setAlignment(Qt.AlignCenter)  # Centrar el contenido
