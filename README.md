@@ -77,6 +77,8 @@ Python version:
 #### Installation
 #### Via AUR using YAY (Version written in C++)
 
+[![NovaNav in C++](https://img.shields.io/badge/NovaNav-C++%20&%20Version-black)](#)
+
 [![AUR](https://img.shields.io/aur/version/novanav-cpp)](https://aur.archlinux.org/packages/novanav-cpp)
 
 <!-- 
@@ -103,6 +105,8 @@ You can find NovaNav Browser in your program menu!
 #
 
 #### Via AUR using YAY (Version written in Python)
+
+[![NovaNav in Python](https://img.shields.io/badge/NovaNav-Python%20&%20Version-yellow)](#)
 
 [![AUR](https://img.shields.io/aur/version/novanav)](https://aur.archlinux.org/packages/novanav)
 
