@@ -1,6 +1,6 @@
 #### NovaNav - Super Lightweight Browser 🌐 
 
-NovaNav: Lightweight browser, delivering fast, distraction-free browsing experience, for Linux (AUR package available) - macOS. It offers essential browsing functionalities while focusing on simplicity and efficiency. This is my own version for Arc Browser mostly for Linux. Keeping in mind the proportions because it's a project done solely by me from scratch.
+NovaNav: Lightweight browser*, delivering fast, distraction-free browsing experience, for Linux (AUR package available) - macOS. It offers essential browsing functionalities while focusing on simplicity and efficiency. This is my own version for Arc Browser mostly for Linux. Keeping in mind the proportions because it's a project done solely by me from scratch.
 
  <img src="./images/icons/icon-small.png" alt="NovaNav-Logo" width="68" height="68">
 
