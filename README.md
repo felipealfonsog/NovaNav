@@ -193,6 +193,30 @@ Thank you for joining me on this journey, and I hope it brings value to your lif
 
 #
 
+#### 🚀 Requirements & Instructions for compiling and executing manually.
+
+Install Python3, then:
+
+You might need perhaps to create an enviroment for pip: 
+```
+python3 -m venv novanav-env
+source novanav-env/bin/activate
+```
+
+If not, just go with this:
+
+```
+pip3 install -r requirements.txt
+```
+
+Runt it with: 
+
+```
+python3 ./src/novanav_linux.py
+```
+
+#
+
 
 #### Current Features
 #### 🚀 Current Features (Some might be in progress)
@@ -358,29 +382,6 @@ Also if you want to install `pyrcc5` (which is not necessary but can help) just 
 - Improve compatibility with various web standards and technologies to ensure a seamless browsing experience.
 - Introduce customization options for user interface themes and keyboard shortcuts to cater to different user preferences.
 - Enhance privacy and security features to protect user data and browsing activities from unauthorized access.
-
-
-#### Requirements & Instructions for compiling and executing manually.
-
-Install Python3, then:
-
-You might need perhaps to create an enviroment for pip: 
-```
-python3 -m venv novanav-env
-source novanav-env/bin/activate
-```
-
-If not, just go with this:
-
-```
-pip3 install -r requirements.txt
-```
-
-Runt it with: 
-
-```
-python3 ./src/novanav.py
-```
 
 #
 
