@@ -1,11 +1,6 @@
 TEMPLATE = app
 TARGET = novanav
 QT += widgets webenginewidgets
-QT += core gui declarative
-CONFIG(debug, debug|release) {
-    TARGET = ${TARGET}d
-    CONFIG += console
-}
 
 # C++ config macOS
 # CONFIG += c++17
@@ -24,9 +19,8 @@ INCLUDEPATH += /usr/local/opt/qt/include/QtWebEngineWidgets
 
 LIBS += -L/usr/local/opt/qt/lib -lQt6WebEngineWidgets
 
+#QT += widgets
 #QT += quick widgets core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 INCLUDEPATH += \
     "${workspaceFolder}/**" \
@@ -47,10 +41,7 @@ macx:CONFIG(release, debug|release): LIBS += -L/usr/local/opt/qt/lib -lQt6WebEng
 # Rutas de inclusión del compilador
 QMAKE_CXXFLAGS += -I$$[QT_INSTALL_HEADERS]
 INCLUDEPATH += $$[QT_INSTALL_HEADERS]
+QT += widgets webenginewidgets
+QT += core gui
 
-# Agregar las rutas de inclusión y defines de VSCode
-INCLUDEPATH += \
-    "${workspaceFolder}/**" \
-    "/usr/local/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers" \
-    "/usr/local/Cellar/qt/6.6.2_1/lib/QtGui.framework/Versions/A/Headers"
 
