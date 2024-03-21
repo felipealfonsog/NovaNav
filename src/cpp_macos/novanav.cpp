@@ -9,13 +9,12 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QtWebEngineWidgets/QWebEngineView>
-#include <QtWebEngineWidgets/QWebEnginePage>
 #include <QtWebEngineWidgets/QWebEngineSettings>
 #include <QtWebEngineWidgets/QWebEngineProfile>
 #include <QTabBar>
 #include <QtWebEngineWidgets/QWebEngineHistory> // Agregar esta línea
 #include <QMenu>
-#include <QtWebEngineWidgets/QWebEnginePage>
+
 
 class URLInputDialog : public QDialog
 {
