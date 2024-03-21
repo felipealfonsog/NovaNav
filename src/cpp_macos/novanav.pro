@@ -16,5 +16,6 @@ INCLUDEPATH += /usr/local/opt/qt/include/QtWebEngineWidgets
 
 #LIBS += -L/usr/local/opt/qt/lib -lQt5WebEngineWidgets
 
-LIBS += -L/usr/local/opt/qt/lib -lQt6WebEngineWidget
+LIBS += -L/usr/local/opt/qt/lib -lQt6WebEngineWidgets
 
+QT += widgets
