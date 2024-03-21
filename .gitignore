@@ -9,8 +9,18 @@ target/
 !/src/rust/*.rs
 
 
-# C++ version
+# C++ version Linux
 
 src/cpp/novanav
 src/cpp/novanav.o
+src/cpp/Makefile
+
+# C++ version macOS
+src/cpp_nacos/novanav
+src/cpp_macos/novanav.o
+src/cpp_macos/novanav.app/
+src/cpp_macos/Makefile
+
+
+
 
