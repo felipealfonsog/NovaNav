@@ -33,8 +33,8 @@ class NovaNav(QMainWindow):
 
         
         # Personaliza el área de contenido de la barra de pestañas
-        self.tab_widget.setStyleSheet("QTabBar::tab { min-width: 20px; padding: 7px; background-color: #white; border-top-left-radius: 8px; border-top-right-radius: 8px; }"
-                                       "QTabBar::tab:selected { background-color: #grey; }")
+        self.tab_widget.setStyleSheet("QTabBar::tab { min-width: 20px; padding: 7px; border-top-left-radius: 8px; border-top-right-radius: 8px; }"
+                                       "QTabBar::tab:selected { min-width: 20px; padding: 7px; border-top-left-radius: 8px; border-top-right-radius: 8px; }")
 
 
         self.layout.addWidget(self.tab_widget)
