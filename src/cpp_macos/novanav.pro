@@ -26,8 +26,6 @@ LIBS += -L/usr/local/opt/qt/lib -lQt6WebEngineWidgets
 
 #QT += quick widgets core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 INCLUDEPATH += \
     "${workspaceFolder}/**" \
     "/usr/local/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers" \
