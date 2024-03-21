@@ -1,5 +1,7 @@
 novanav-env/
 
+# macOS .DS_Store
+*.DS_Store
 
 # Added by cargo
 

@@ -15,6 +15,7 @@
 #include <QTabBar>
 #include <QtWebEngineWidgets/QWebEngineHistory> // Agregar esta línea
 #include <QMenu>
+#include <QtWebEngineWidgets/QWebEnginePage>
 
 class URLInputDialog : public QDialog
 {
