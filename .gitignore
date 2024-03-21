@@ -1,7 +1,9 @@
 novanav-env/
 
 # macOS .DS_Store
-*.DS_Store
+# git rm --cached '*.DS_Store'
+#*.DS_Store
+.DS_Store
 
 # Added by cargo
 
@@ -9,7 +11,6 @@ target/
 
 /src/rust/*
 !/src/rust/*.rs
-
 
 # C++ version Linux
 
