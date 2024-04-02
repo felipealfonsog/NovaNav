@@ -16,7 +16,6 @@
 #include <QMenu>
 #include <QtWebEngineWidgets/QWebEngineHistory> // Agregar esta línea
 #include <QtWebEngineWidgets/QWebEngineContextMenuData> // Agregar esta línea
-#include <QScreen>
 
 class URLInputDialog : public QDialog
 {
@@ -77,7 +76,6 @@ public:
 
             QShortcut *shortcut_quit = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q), this);
     connect(shortcut_quit, &QShortcut::activated, qApp, &QApplication::quit);
-    
 
         // Set permissions and settings...
     }
@@ -302,61 +300,6 @@ private:
         }
     }
 
-
-void open_new_window(const QUrl& url)
-{
-    QWebEngineView *newBrowser = new QWebEngineView();
-    newBrowser->setUrl(url);
-    newBrowser->setZoomFactor(0.67); // Zoom al 67%
-    newBrowser->show();
-
-    // Conectar el menú contextual para el nuevo navegador
-    newBrowser->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(newBrowser, &QWebEngineView::customContextMenuRequested, this, &NovaNav::onCustomContextMenuRequestedForNewWindow);
-
-    // Centrar la ventana en la pantalla
-    QRect screenGeometry = QGuiApplication::primaryScreen()->geometry();
-    int x = (screenGeometry.width() - newBrowser->width()) / 2;
-    int y = (screenGeometry.height() - newBrowser->height()) / 2;
-    newBrowser->move(x, y);
-
-    // Establecer dimensiones de la ventana
-    newBrowser->resize(800, 500);
-}
-
-void onCustomContextMenuRequestedForNewWindow(const QPoint &pos)
-{
-    QWebEngineView *newBrowser = dynamic_cast<QWebEngineView *>(sender());
-    if (!newBrowser)
-        return;
-
-    QMenu menu;
-
-    QAction *backAction = menu.addAction(tr("Back"));
-    QAction *forwardAction = menu.addAction(tr("Forward"));
-    QAction *refreshAction = menu.addAction(tr("Refresh"));
-    QAction *creditsAction = menu.addAction(tr("Credits"));
-
-    connect(backAction, &QAction::triggered, [=]() {
-        if (newBrowser->history()->canGoBack())
-            newBrowser->back();
-    });
-
-    connect(forwardAction, &QAction::triggered, [=]() {
-        if (newBrowser->history()->canGoForward())
-            newBrowser->forward();
-    });
-
-    connect(refreshAction, &QAction::triggered, [=]() {
-        newBrowser->reload();
-    });
-
-    connect(creditsAction, &QAction::triggered, this, &NovaNav::show_credits_popup);
-
-    menu.exec(newBrowser->mapToGlobal(pos));
-}
-
-
     void onCustomContextMenuRequested(const QPoint &pos)
 {
     QWebEngineView *browser = dynamic_cast<QWebEngineView *>(sender());
@@ -380,7 +323,10 @@ void onCustomContextMenuRequestedForNewWindow(const QPoint &pos)
         });
 
         connect(newWindowAction, &QAction::triggered, [=]() {
-            open_new_window(linkUrl);
+            QWebEngineView *newBrowser = new QWebEngineView();
+            newBrowser->setUrl(linkUrl);
+            newBrowser->setZoomFactor(0.67); // Zoom al 67%
+            newBrowser->show();
         });
     } else {
         newTabAction->setEnabled(false);
