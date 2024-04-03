@@ -222,7 +222,6 @@ void create_new_tab(const QString &url)
 
 
 
-
 // Función para agregar botones de cierre personalizados a las pestañas
     void addCloseButtonToTab(int tabIndex)
     {
