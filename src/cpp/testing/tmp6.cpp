@@ -189,14 +189,6 @@ void create_new_tab(const QString &url)
     connect(browser, &QWebEngineView::titleChanged, [=](const QString &title)
             { set_tab_title(browser, title.left(20)); });
 
-    // Conectar la señal urlChanged para detectar cuando se cambia la URL
-    connect(browser, &QWebEngineView::urlChanged, [=](const QUrl &newUrl)
-    {
-        if (newUrl.toString().endsWith("_blank")) {
-            create_new_tab(newUrl.toString()); // Abrir enlace en nueva pestaña
-        }
-    });
-
     // Agregar el QWebEngineView a la pestaña
     tab_widget->addTab(browser, "");
     browser->setZoomFactor(0.67); // Zoom por defecto
@@ -218,7 +210,6 @@ void create_new_tab(const QString &url)
     browser->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(browser, &QWebEngineView::customContextMenuRequested, this, &NovaNav::onCustomContextMenuRequested);
 }
-
 
 
 
