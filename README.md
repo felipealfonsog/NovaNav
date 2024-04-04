@@ -189,7 +189,7 @@ ctrl+q (quit)
 
 #### NovaNav Browser written in other languages (Experimental part of the project)*
 
-[![NovaNav under development](https://img.shields.io/badge/NovaNav-In%20Other∞20Languages-black)](#)
+[![NovaNav under development](https://img.shields.io/badge/NovaNav-In%20Other%20Languages-blue)](#)
 
 
 
@@ -362,7 +362,7 @@ rustc src/rust/novanav.rs
 
 #
 
-[![Errors Reported](https://img.shields.io/badge/Errors-Reported-black)](#)
+[![Errors Reported](https://img.shields.io/badge/Errors-Reported-blue)](#)
 
 <details>
 
