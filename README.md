@@ -86,6 +86,7 @@ NovaNav Browser is available on AUR (Arch User Repository), and it can be instal
    
    ```
    sudo pacman -S yay
+   ```
    
    Once yay is installed, you can install by running the following command:
    
