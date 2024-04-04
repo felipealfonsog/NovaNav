@@ -9,12 +9,14 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QtWebEngineWidgets/QWebEngineView>
+#include <QtWebEngineWidgets/QWebEnginePage>
 #include <QtWebEngineWidgets/QWebEngineSettings>
 #include <QtWebEngineWidgets/QWebEngineProfile>
 #include <QTabBar>
-#include <QtWebEngineWidgets/QWebEngineHistory> // Agregar esta línea
 #include <QMenu>
-
+#include <QtWebEngineWidgets/QWebEngineHistory> // Agregar esta línea
+#include <QtWebEngineWidgets/QWebEngineContextMenuData> // Agregar esta línea
+#include <QScreen>
 
 class URLInputDialog : public QDialog
 {
@@ -73,19 +75,35 @@ public:
 
         connect(tab_widget, &QTabWidget::tabCloseRequested, this, &NovaNav::close_tab);
 
+            QShortcut *shortcut_quit = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q), this);
+    connect(shortcut_quit, &QShortcut::activated, qApp, &QApplication::quit);
+    
+
+// Conectar la señal tabBarClicked del QTabWidget a una ranura para agregar botones de cierre personalizados
+        connect(tab_widget, &QTabWidget::tabBarClicked, this, &NovaNav::addCloseButtonToTab);
+
+
+
         // Set permissions and settings...
     }
 
 public slots:
     void show_url_input_dialog()
+ 
+{
+    if (url_input_dialog->exec() == QDialog::Accepted)
     {
-
-        if (url_input_dialog->exec() == QDialog::Accepted)
+        QString url = url_input_dialog->url_entry->text();
+        // Verificar si la URL comienza con "http://" o "https://"
+        if (!url.startsWith("http://") && !url.startsWith("https://"))
         {
-            QString url = url_input_dialog->url_entry->text();
-            create_new_tab(url);
+            // Si no comienza con "http://" o "https://", agregar "http://"
+            url = "http://" + url;
         }
+        create_new_tab(url);
     }
+}
+
 
     void close_tab(int index)
     {
@@ -148,74 +166,84 @@ private:
     // sqDebug() << "User-Agent:" << browser->page()->profile()->httpUserAgent();
     // profile->setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
 
+void create_new_tab(const QString &url)
+{
+    // Crear un identificador único para el perfil
+    static int profileCount = 0;
+    QString profileName = "CustomProfile_" + QString::number(profileCount++);
+
+    // Crear un nuevo perfil de navegación
+    QWebEngineProfile *profile = new QWebEngineProfile(profileName);
+
+    // Modificar el User-Agent en ciertos sitios web
+    profile->setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
+
+    // Crear un QWebEngineView y establecer la URL
+    QWebEngineView *browser = new QWebEngineView();
+    browser->setUrl(QUrl(url)); // Establecer la URL proporcionada
+
+    // Permitir JavaScript
+    browser->page()->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+
+    // Conectar señales de cambio de título y URL
+    connect(browser, &QWebEngineView::titleChanged, [=](const QString &title)
+            { set_tab_title(browser, title.left(20)); });
+
+    // Agregar el QWebEngineView a la pestaña
+    tab_widget->addTab(browser, "");
+    browser->setZoomFactor(0.67); // Zoom por defecto
+
+    // Crear el botón de cierre personalizado
+    QPushButton *closeButton = new QPushButton("✖");
+    closeButton->setFixedSize(10, 10);
+    closeButton->setStyleSheet("QPushButton { background-color: transparent; border: none; font-size: 10px; color: black; }");
+
+    // Conectar la señal clicked del botón a la ranura para cerrar la pestaña
+    connect(closeButton, &QPushButton::clicked, [=]() {
+        close_tab(tab_widget->indexOf(browser)); // Cerrar la pestaña que contiene este navegador
+    });
+
+    // Establecer el botón de cierre personalizado en la pestaña recién creada
+    tab_widget->tabBar()->setTabButton(tab_widget->count() - 1, QTabBar::RightSide, closeButton);
+
+    // Configurar el menú contextual para abrir enlaces en nueva pestaña o ventana
+    browser->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(browser, &QWebEngineView::customContextMenuRequested, this, &NovaNav::onCustomContextMenuRequested);
+}
 
 
-    void create_new_tab(const QString &url)
+
+
+// Función para agregar botones de cierre personalizados a las pestañas
+    void addCloseButtonToTab(int tabIndex)
     {
-        // Crear un identificador único para el perfil
-        static int profileCount = 0;
-        QString profileName = "CustomProfile_" + QString::number(profileCount++);
+        // Si no hay ningún botón en el área de cierre de la pestaña actual, agrega uno
+        if (!tab_widget->tabBar()->tabButton(tabIndex, QTabBar::RightSide)) {
+            QPushButton *close_button = new QPushButton("✖");
+            close_button->setFixedSize(10, 10);
+            close_button->setStyleSheet("QPushButton { background-color: transparent; border: none; font-size: 10px; color: black; }");
 
-        // Crear un nuevo perfil de navegación
-        QWebEngineProfile *profile = new QWebEngineProfile(profileName);
+            // Conecta la señal clicked del botón a la ranura para cerrar la pestaña
+            connect(close_button, &QPushButton::clicked, [=]() {
+                // Lógica para cerrar la pestaña
+                close_tab(tabIndex);
+            });
 
-        // Modificar el User-Agent en ciertos sitios web
-        profile->setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
-
-        // Crear un QWebEngineView y establecer la URL
-        QWebEngineView *browser = new QWebEngineView();
-        browser->setUrl(QUrl(url)); // Establecer la URL proporcionada
-
-        // Permitir JavaScript
-        browser->page()->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-
-        // Conectar señales de cambio de título y URL
-        connect(browser, &QWebEngineView::titleChanged, [=](const QString &title)
-                { set_tab_title(browser, title.left(20)); });
-
-        // Conectar la señal de cambio de URL para abrir enlaces _blank en una nueva pestaña
-        connect(browser, &QWebEngineView::urlChanged, this, [=](const QUrl &newUrl)
-                {
-        // Verificar si el enlace es _blank
-        if (newUrl.toString().contains("_blank")) {
-            create_new_tab(newUrl.toString()); // Abrir enlace en nueva pestaña
-        } });
-
-        // Agregar el QWebEngineView a la pestaña
-        tab_widget->addTab(browser, "");
-        browser->setZoomFactor(0.67); // Zoom por defecto
-
-        // Configurar el menú contextual para abrir enlaces en nueva pestaña o ventana
-        browser->setContextMenuPolicy(Qt::CustomContextMenu);
-        connect(browser, &QWebEngineView::customContextMenuRequested, [=](const QPoint &pos)
-                {
-        // Obtener la URL del enlace bajo el cursor
-        QUrl linkUrl = browser->page()->url();
-        // Crear el menú contextual
-        QMenu contextMenu(tr("Context menu"), browser);
-        // Agregar acciones al menú
-        QAction *newTabAction = contextMenu.addAction(tr("Open link in new tab"));
-        QAction *newWindowAction = contextMenu.addAction(tr("Open link in new window"));
-        QAction *backAction = contextMenu.addAction(tr("Back"));
-        QAction *forwardAction = contextMenu.addAction(tr("Forward"));
-        QAction *refreshAction = contextMenu.addAction(tr("Refresh"));
-        // Mostrar el menú contextual y esperar a que se seleccione una acción
-        QAction *selectedAction = contextMenu.exec(browser->mapToGlobal(pos));
-        // Procesar la acción seleccionada
-        if (selectedAction == newTabAction) {
-            create_new_tab(linkUrl.toString()); // Abrir enlace en nueva pestaña
-        } else if (selectedAction == newWindowAction) {
-            QWebEngineView *newBrowser = new QWebEngineView();
-            newBrowser->setUrl(linkUrl); // Abrir enlace en nueva ventana
-            newBrowser->show();
-        } else if (selectedAction == backAction) {
-            browser->back(); // Retroceder en el historial
-        } else if (selectedAction == forwardAction) {
-            browser->forward(); // Avanzar en el historial
-        } else if (selectedAction == refreshAction) {
-            browser->reload(); // Actualizar página
-        } });
+            tab_widget->tabBar()->setTabButton(tabIndex, QTabBar::RightSide, close_button);
+        }
     }
+
+    // Función para crear y agregar una nueva pestaña
+    void createAndAddNewTab(const QString &url)
+    {
+        create_new_tab(url);
+        // Agregar botones de cierre personalizados a la nueva pestaña
+        addCloseButtonToTab(tab_widget->count() - 1);
+    }
+
+
+
+
 
     void set_tab_title(QWebEngineView *browser, const QString &title)
     {
@@ -263,22 +291,38 @@ private:
         navigation_container->setLayout(navigation_layout);
 
         tab_widget->setCornerWidget(navigation_container, Qt::TopRightCorner);
-    }
 
-/*
-void open_google_tab() {
-    QWebEngineView *current_browser = dynamic_cast<QWebEngineView *>(tab_widget->currentWidget());
-    if (current_browser) {
-        create_new_tab(current_browser->url().toString()); // Abrir la URL actual en una nueva pestaña
-    }
-}
-*/
-
-void open_google_tab() {
-    create_new_tab("https://www.google.com");
+// Itera sobre las pestañas y agrega el botón personalizado en el área de cierre de cada una
+// Oculta los botones de cierre predeterminados en todas las pestañas
+for (int i = 0; i < tab_widget->count(); ++i) {
+    tab_widget->tabBar()->tabButton(i, QTabBar::RightSide)->hide();
 }
 
+// Itera sobre las pestañas y agrega el botón personalizado en el área de cierre de cada una
+for (int i = 0; i < tab_widget->count(); ++i) {
+    QPushButton *close_button = new QPushButton("✖");
+    close_button->setFixedSize(10, 10);
+    close_button->setStyleSheet("QPushButton { background-color: transparent; border: none; font-size: 10px; color: black; }");
 
+    // Conecta la señal clicked del botón a la ranura para cerrar la pestaña
+    connect(close_button, &QPushButton::clicked, [=]() {
+        // Lógica para cerrar la pestaña
+        close_tab(i);
+    });
+
+    tab_widget->tabBar()->setTabButton(i, QTabBar::RightSide, close_button);
+}
+
+
+
+
+
+    }
+
+    void open_google_tab()
+    {
+        create_new_tab("https://www.google.com");
+    }
 
     void show_credits_popup()
     {
@@ -288,6 +332,7 @@ void open_google_tab() {
         QVBoxLayout *credits_layout = new QVBoxLayout(credits_popup);
 
         QLabel *credits_label = new QLabel(
+            "NovaNav - Super Lightweight Browser\n\n"
             "Credits:\n"
             "Computer Science Engineer: Felipe Alfonso González\n"
             "GitHub: github.com/felipealfonsog\n"
@@ -334,6 +379,114 @@ void open_google_tab() {
                 current_browser->forward();
         }
     }
+
+
+void open_new_window(const QUrl& url)
+{
+    QWebEngineView *newBrowser = new QWebEngineView();
+    newBrowser->setUrl(url);
+    newBrowser->setZoomFactor(0.67); // Zoom al 67%
+    newBrowser->show();
+
+    // Conectar el menú contextual para el nuevo navegador
+    newBrowser->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(newBrowser, &QWebEngineView::customContextMenuRequested, this, &NovaNav::onCustomContextMenuRequestedForNewWindow);
+
+    // Centrar la ventana en la pantalla
+    QRect screenGeometry = QGuiApplication::primaryScreen()->geometry();
+    int x = (screenGeometry.width() - newBrowser->width()) / 2;
+    int y = (screenGeometry.height() - newBrowser->height()) / 2;
+    newBrowser->move(x, y);
+
+    // Establecer dimensiones de la ventana
+    newBrowser->resize(800, 500);
+}
+
+void onCustomContextMenuRequestedForNewWindow(const QPoint &pos)
+{
+    QWebEngineView *newBrowser = dynamic_cast<QWebEngineView *>(sender());
+    if (!newBrowser)
+        return;
+
+    QMenu menu;
+
+    QAction *backAction = menu.addAction(tr("Back"));
+    QAction *forwardAction = menu.addAction(tr("Forward"));
+    QAction *refreshAction = menu.addAction(tr("Refresh"));
+    QAction *creditsAction = menu.addAction(tr("Credits"));
+
+    connect(backAction, &QAction::triggered, [=]() {
+        if (newBrowser->history()->canGoBack())
+            newBrowser->back();
+    });
+
+    connect(forwardAction, &QAction::triggered, [=]() {
+        if (newBrowser->history()->canGoForward())
+            newBrowser->forward();
+    });
+
+    connect(refreshAction, &QAction::triggered, [=]() {
+        newBrowser->reload();
+    });
+
+    connect(creditsAction, &QAction::triggered, this, &NovaNav::show_credits_popup);
+
+    menu.exec(newBrowser->mapToGlobal(pos));
+}
+
+
+    void onCustomContextMenuRequested(const QPoint &pos)
+{
+    QWebEngineView *browser = dynamic_cast<QWebEngineView *>(sender());
+    if (!browser)
+        return;
+
+    QMenu menu;
+
+    QAction *newTabAction = menu.addAction(tr("Open link in new tab"));
+    QAction *newWindowAction = menu.addAction(tr("Open link in new window"));
+    QAction *backAction = menu.addAction(tr("Back"));
+    QAction *forwardAction = menu.addAction(tr("Forward"));
+    QAction *refreshAction = menu.addAction(tr("Refresh"));
+    QAction *showTabsAction = menu.addAction(tr("Show/Hide Tabs"));
+    QAction *creditsAction = menu.addAction(tr("Credits"));
+
+    QUrl linkUrl = browser->page()->contextMenuData().linkUrl();
+    if (!linkUrl.isEmpty()) {
+        connect(newTabAction, &QAction::triggered, [=]() {
+            create_new_tab(linkUrl.toString());
+        });
+
+        connect(newWindowAction, &QAction::triggered, [=]() {
+            open_new_window(linkUrl);
+        });
+    } else {
+        newTabAction->setEnabled(false);
+        newWindowAction->setEnabled(false);
+    }
+
+    connect(backAction, &QAction::triggered, [=]() {
+        if (browser->history()->canGoBack())
+            browser->back();
+    });
+
+    connect(forwardAction, &QAction::triggered, [=]() {
+        if (browser->history()->canGoForward())
+            browser->forward();
+    });
+
+    connect(refreshAction, &QAction::triggered, [=]() {
+        browser->reload();
+    });
+
+    connect(showTabsAction, &QAction::triggered, this, &NovaNav::toggle_titles);
+
+    connect(creditsAction, &QAction::triggered, this, &NovaNav::show_credits_popup);
+
+    menu.exec(browser->mapToGlobal(pos));
+}
+
+
 };
 
 int main(int argc, char *argv[])
