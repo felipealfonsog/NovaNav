@@ -70,7 +70,7 @@ C++ Version:
 #### Installation
 #### Via AUR using YAY (Version written in C++)
 
-[![NovaNav in C++](https://img.shields.io/badge/NovaNav-C++%20Version-pink)](#)
+[![NovaNav in C++](https://img.shields.io/badge/NovaNav-C++%20Version-EE6352)](#)
 
 [![AUR](https://img.shields.io/aur/version/novanav-cpp)](https://aur.archlinux.org/packages/novanav-cpp)
 
