@@ -1102,6 +1102,8 @@ compiler_moc_source_clean:
 novanav.moc: novanav.cpp \
 		/usr/local/lib/QtGui.framework/Headers/QShortcut \
 		/usr/local/lib/QtGui.framework/Headers/qshortcut.h \
+		/usr/local/lib/QtGui.framework/Headers/QScreen \
+		/usr/local/lib/QtGui.framework/Headers/qscreen.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
 	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/felipe/Documents/Development/NovaNav/src/cpp_macos/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/felipe/Documents/Development/NovaNav/src/cpp_macos -I/Users/felipe/Documents/Development/NovaNav/src/cpp_macos -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I/usr/include/c++/13.2.1 -I/usr/include/c++/13.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/13.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include-fixed -I/usr/include -F/usr/local/lib novanav.cpp -o novanav.moc
@@ -1120,6 +1122,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_mo
 
 novanav.o: novanav.cpp /usr/local/lib/QtGui.framework/Headers/QShortcut \
 		/usr/local/lib/QtGui.framework/Headers/qshortcut.h \
+		/usr/local/lib/QtGui.framework/Headers/QScreen \
+		/usr/local/lib/QtGui.framework/Headers/qscreen.h \
 		novanav.moc
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o novanav.o novanav.cpp
 
