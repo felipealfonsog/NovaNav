@@ -70,7 +70,7 @@ C++ Version:
 #### Installation
 #### Via AUR using YAY (Version written in C++)
 
-[![NovaNav in C++](https://img.shields.io/badge/NovaNav-C++%20Version-black)](#)
+[![NovaNav in C++](https://img.shields.io/badge/NovaNav-C++%20Version-pink)](#)
 
 [![AUR](https://img.shields.io/aur/version/novanav-cpp)](https://aur.archlinux.org/packages/novanav-cpp)
 
@@ -286,16 +286,16 @@ ctrl+q (quit)
 
 #
 
-#### NovaNav Browser written in other languages in C++ (mostly) & Rust (Experimental part of the project)*
+#### NovaNav Browser written in other languages (Experimental part of the project)*
 
-[![NovaNav under development in C++ & Rust](https://img.shields.io/badge/NovaNav-In%20C++%20&%20Rust-black)](#)
+[![NovaNav under development](https://img.shields.io/badge/NovaNav-In%20Other∞20Languages-blue)](#)
 
 
 
 
 <details>
 
-<summary><strong>NovaNav written in C++ 🚀 - (Manual instructionss)*</strong></summary>
+<summary><strong>NovaNav written in C++ 🚀 - (Manual instructions)*</strong></summary>
 
 <br>
 
