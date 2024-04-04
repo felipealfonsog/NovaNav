@@ -72,13 +72,13 @@ C++ Version:
 
 [![NovaNav in C++](https://img.shields.io/badge/NovaNav-C++%20Version-EE6352)](#)
 
-[![AUR](https://img.shields.io/aur/version/novanav-cpp)](https://aur.archlinux.org/packages/novanav-cpp)
+[![AUR](https://img.shields.io/aur/version/novanav)](https://aur.archlinux.org/packages/novanav)
 
 <!-- 
-[![AUR](https://img.shields.io/aur/version/novanav-cpp.svg)](https://aur.archlinux.org/packages/novanav-cpp)
+[![AUR](https://img.shields.io/aur/version/novanav.svg)](https://aur.archlinux.org/packages/novanav)
 -->
 
-https://aur.archlinux.org/packages/novanav-cpp
+https://aur.archlinux.org/packages/novanav
 
 NovaNav Browser is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install NovaNav:
 
@@ -86,12 +86,13 @@ NovaNav Browser is available on AUR (Arch User Repository), and it can be instal
    
    ```
    sudo pacman -S yay
-   ```
+   
    Once yay is installed, you can install by running the following command:
    
    ```
-   yay -S novanav-cpp
+   yay -S novanav
    ```
+
 This command will automatically fetch the package from AUR and handle the installation process for you.
 You can find NovaNav Browser in your program menu!
 
@@ -200,7 +201,46 @@ ctrl+q (quit)
 
 <br>
 
- Instructions for Compiling from Source
+
+[![Install NovaNav](https://img.shields.io/badge/Install-NovaNav%20Browser-purple)](https://github.com/felipealfonsog/NovaNav#installation)
+#### Via AUR using YAY (Version written in C++)
+
+[![NovaNav in Python](https://img.shields.io/badge/NovaNav-Python%20Version-yellow)](#)
+
+[![AUR](https://img.shields.io/aur/version/novanav-cpp)](https://aur.archlinux.org/packages/novanav-cpp)
+
+<!-- 
+[![AUR](https://img.shields.io/aur/version/novanav-cpp.svg)](https://aur.archlinux.org/packages/novanav-cpp)
+-->
+
+https://aur.archlinux.org/packages/novanav-cpp
+
+NovaNav Browser is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install NovaNav:
+
+1. Make sure you have `yay` installed. If not, you can install it with the following command:
+   
+   ```
+   sudo pacman -S yay
+   ```
+
+   Once yay is installed, you can install by running the following command:
+   
+   ```
+   yay -S novanav-cpp
+   ```
+
+   Or just:
+  
+   ```
+   yay -S novanav
+   ```
+
+This command will automatically fetch the package from AUR and handle the installation process for you.
+You can find NovaNav Browser in your program menu!
+
+#
+
+##### Instructions for Compiling from Source
 
 Prerequisites
 
@@ -263,13 +303,13 @@ To install NovaNav system-wide after compilation, you can use the provided PKGBU
 
 [![NovaNav in Python](https://img.shields.io/badge/NovaNav-Python%20Version-yellow)](#)
 
-[![AUR](https://img.shields.io/aur/version/novanav)](https://aur.archlinux.org/packages/novanav)
+[![AUR](https://img.shields.io/aur/version/novanav-py)](https://aur.archlinux.org/packages/novanav-py)
 
 <!-- 
-[![AUR](https://img.shields.io/aur/version/novanav.svg)](https://aur.archlinux.org/packages/novanav)
+[![AUR](https://img.shields.io/aur/version/novanav-py.svg)](https://aur.archlinux.org/packages/novanav-py)
 -->
 
-https://aur.archlinux.org/packages/novanav
+https://aur.archlinux.org/packages/novanav-py
 
 NovaNav Browser is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install NovaNav:
 
@@ -278,11 +318,13 @@ NovaNav Browser is available on AUR (Arch User Repository), and it can be instal
    ```
    sudo pacman -S yay
    ```
+
    Once yay is installed, you can install by running the following command:
    
    ```
-   yay -S novanav
+   yay -S novanav-py
    ```
+
 This command will automatically fetch the package from AUR and handle the installation process for you.
 You can find NovaNav Browser in your program menu!
 
