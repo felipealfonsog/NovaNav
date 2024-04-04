@@ -98,7 +98,7 @@ You can find NovaNav Browser in your program menu!
 
 #
 
-#### Bash Installer 🚀 for Linux (Arch and Debian) - macOS: (Version written in C++)
+#### Bash Installer 🚀 for Linux (Arch and Debian) - macOS*: (Version written in C++)
 
 [![Bash Installer Version](https://img.shields.io/badge/Bash%20Installer%20Version-Available-brightgreen)](#)
 
@@ -159,6 +159,8 @@ If you want to update NovaNav (novanav) in your system, re-run the script:
 Please note that if you encounter any issues or have suggestions, feel free to raise an issue on the [NovaNav repository](https://github.com/felipealfonsog/NovaNav/issues). Your feedback is invaluable!
 
 Thank you for joining me on this journey, and I hope it brings value to your life and workflow. Let's continue making technology accessible and enjoyable for everyone!
+
+<sub>* on macOS version might contain lots of errors, bugs, etc.</sub>
 
 #
 
@@ -238,7 +240,7 @@ Once compilation is complete, the novanav binary will be generated in the curren
 Installation
 To install NovaNav system-wide after compilation, you can use the provided PKGBUILD or manually copy the binary to /usr/local/bin, the icon to /usr/share/pixmaps, and the .desktop file to /usr/share/applications, located in the 'src' folder.
 
-<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
+<sub>* It might contain lots of errors, bugs, etc. Meanwhile, Keep it simple now with C++ stable version, running smomothly!</sub>
 
 </details>
 
@@ -308,7 +310,7 @@ python3 ./src/novanav.py
 ```
 
 
-<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
+<sub>* It might contain lots of errors, bugs, etc. Meanwhile, Keep it simple now with C++ stable version, running smomothly!</sub>
 
 </details>
 
@@ -353,7 +355,7 @@ rustc src/rust/novanav.rs
 ./novanav
 ```
 
-<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
+<sub>* It might contain lots of errors, bugs, etc. Meanwhile, Keep it simple now with C++ stable version, running smomothly!</sub>
 
 </details>
 
