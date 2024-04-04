@@ -70,7 +70,7 @@ C++ Version:
 #### Installation
 #### Via AUR using YAY (Version written in C++)
 
-[![NovaNav in C++](https://img.shields.io/badge/NovaNav-C++%20Version-black)](#)
+[![NovaNav in C++](https://img.shields.io/badge/NovaNav-C++%20Version-EE6352)](#)
 
 [![AUR](https://img.shields.io/aur/version/novanav-cpp)](https://aur.archlinux.org/packages/novanav-cpp)
 
@@ -98,7 +98,7 @@ You can find NovaNav Browser in your program menu!
 
 #
 
-#### Bash Installer 🚀 for Linux (Arch and Debian) - macOS: (Version written in C++)
+#### Bash Installer 🚀 for Linux (Arch and Debian) - macOS*: (Version written in C++)
 
 [![Bash Installer Version](https://img.shields.io/badge/Bash%20Installer%20Version-Available-brightgreen)](#)
 
@@ -160,6 +160,8 @@ Please note that if you encounter any issues or have suggestions, feel free to r
 
 Thank you for joining me on this journey, and I hope it brings value to your life and workflow. Let's continue making technology accessible and enjoyable for everyone!
 
+<sub>* on macOS version might contain lots of errors, bugs, etc.</sub>
+
 #
 
 
@@ -175,11 +177,196 @@ Thank you for joining me on this journey, and I hope it brings value to your lif
 
 #
 
-[![Errors Reported](https://img.shields.io/badge/Errors-Reported-red)](#)
+#### How-to - NovaNav
+
+```
+ctrl+t (New tab)
+ctrl+v (hide tabs for distraction-free)
+ctrl+q (quit)
+```
+
+#
+
+#### NovaNav Browser written in other languages (Experimental part of the project)*
+
+[![NovaNav under development](https://img.shields.io/badge/NovaNav-In%20Other∞20Languages-black)](#)
+
+
+
 
 <details>
 
-<summary><strong>Errors & Fixing</strong></summary>
+<summary><strong>NovaNav written in C++ 🚀 - (Manual instructions)*</strong></summary>
+
+<br>
+
+ Instructions for Compiling from Source
+
+Prerequisites
+
+Make sure you have the following dependencies installed on your system:
+
+- Qt 5 Base
+- Qt 5 WebEngine
+
+Compilation Steps
+
+1. Clone the NovaNav repository from GitHub:
+
+```
+git clone https://github.com/felipealfonsog/NovaNav.git
+```
+
+Navigate to the directory containing the source code:
+
+```
+cd NovaNav/src/cpp
+```
+
+Configure the build using qmake. You can adjust parameters as needed:
+
+```
+qmake PREFIX=/usr/local
+```
+
+Compile the source code:
+
+```
+make
+```
+
+Once compilation is complete, the novanav binary will be generated in the current directory.
+
+Installation
+To install NovaNav system-wide after compilation, you can use the provided PKGBUILD or manually copy the binary to /usr/local/bin, the icon to /usr/share/pixmaps, and the .desktop file to /usr/share/applications, located in the 'src' folder.
+
+<sub>* It might contain lots of errors, bugs, etc. Meanwhile, Keep it simple now with C++ stable version, running smomothly!</sub>
+
+</details>
+
+
+<details>
+
+<summary><strong>NovaNav written in Python 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
+
+<br>
+
+##### Python version: 
+
+  - python
+  - python-pip
+  - python-pyqt5
+  - python-pyqt5-webengine
+
+[![Install NovaNav](https://img.shields.io/badge/Install-NovaNav%20Browser-purple)](https://github.com/felipealfonsog/NovaNav#installation)
+#### Via AUR using YAY (Version written in Python)
+
+[![NovaNav in Python](https://img.shields.io/badge/NovaNav-Python%20Version-yellow)](#)
+
+[![AUR](https://img.shields.io/aur/version/novanav)](https://aur.archlinux.org/packages/novanav)
+
+<!-- 
+[![AUR](https://img.shields.io/aur/version/novanav.svg)](https://aur.archlinux.org/packages/novanav)
+-->
+
+https://aur.archlinux.org/packages/novanav
+
+NovaNav Browser is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install NovaNav:
+
+1. Make sure you have `yay` installed. If not, you can install it with the following command:
+   
+   ```
+   sudo pacman -S yay
+   ```
+   Once yay is installed, you can install by running the following command:
+   
+   ```
+   yay -S novanav
+   ```
+This command will automatically fetch the package from AUR and handle the installation process for you.
+You can find NovaNav Browser in your program menu!
+
+
+#### 🚀 Requirements & Instructions for compiling and executing manually.
+
+Install Python3, then:
+
+You might need perhaps to create an enviroment for pip: 
+```
+python3 -m venv novanav-env
+source novanav-env/bin/activate
+```
+
+If not, just go with this:
+
+```
+pip3 install -r requirements.txt
+```
+
+Runt it with: 
+
+```
+python3 ./src/novanav.py
+```
+
+
+<sub>* It might contain lots of errors, bugs, etc. Meanwhile, Keep it simple now with C++ stable version, running smomothly!</sub>
+
+</details>
+
+
+<details>
+
+<summary><strong>NovaNav written in Rust 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
+
+<br>
+
+Important library to install:
+
+```
+sudo pacman -S libsoup
+```
+
+In Arch, add this line to .bashrc:
+
+```
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig:$PKG_CONFIG_PATH
+```
+
+ Instructions for installation/compiling the program written in Rust*: 
+
+
+
+Add that to the [dependencies] section of your `Cargo.toml` file:
+```
+vim Cargo.toml
+```
+
+To test it , run this command on terminal:
+
+```
+chmod +x run_novanav_rust.sh
+./run_novanav_rust.sh
+```
+Compiling: 
+
+```
+rustc src/rust/novanav.rs
+./novanav
+```
+
+<sub>* It might contain lots of errors, bugs, etc. Meanwhile, Keep it simple now with C++ stable version, running smomothly!</sub>
+
+</details>
+
+
+#
+
+[![Errors Reported](https://img.shields.io/badge/Errors-Reported-black)](#)
+
+<details>
+
+<summary><strong>Errors, Fixes and tips</strong></summary>
 <br>
 
 
@@ -260,201 +447,6 @@ Then should be fine with no errors.
 
 <sub>If you still have problems please let me know.
 Also if you want to install `pyrcc5` (which is not necessary but can help) just do a normal installation using pip: I am using Python 3.x.</sub>
-
-</details>
-
-#
-
-#### Future Goals
-#### 🚀 Future Goals
-
-- Implement support for bookmarks to allow users to save their favorite websites for quick access.
-- Enhance tab management features, such as rearranging tabs and grouping them into tab sets.
-- Improve compatibility with various web standards and technologies to ensure a seamless browsing experience.
-- Introduce customization options for user interface themes and keyboard shortcuts to cater to different user preferences.
-- Enhance privacy and security features to protect user data and browsing activities from unauthorized access.
-
-#
-
-#### How-to - NovaNav
-
-```
-ctrl+t (New tab)
-ctrl+v (hide tabs for distraction-free)
-ctrl+q (quit)
-```
-
-#
-
-#### NovaNav Browser written in other languages in C++ (mostly) & Rust (Experimental part of the project)*
-
-[![NovaNav under development in C++ & Rust](https://img.shields.io/badge/NovaNav-In%20C++%20&%20Rust-black)](#)
-
-
-
-
-<details>
-
-<summary><strong>NovaNav written in C++ 🚀 - (Manual instructionss)*</strong></summary>
-
-<br>
-
- Instructions for Compiling from Source
-
-Prerequisites
-
-Make sure you have the following dependencies installed on your system:
-
-- Qt 5 Base
-- Qt 5 WebEngine
-
-Compilation Steps
-
-1. Clone the NovaNav repository from GitHub:
-
-```
-git clone https://github.com/felipealfonsog/NovaNav.git
-```
-
-Navigate to the directory containing the source code:
-
-```
-cd NovaNav/src/cpp
-```
-
-Configure the build using qmake. You can adjust parameters as needed:
-
-```
-qmake PREFIX=/usr/local
-```
-
-Compile the source code:
-
-```
-make
-```
-
-Once compilation is complete, the novanav binary will be generated in the current directory.
-
-Installation
-To install NovaNav system-wide after compilation, you can use the provided PKGBUILD or manually copy the binary to /usr/local/bin, the icon to /usr/share/pixmaps, and the .desktop file to /usr/share/applications, located in the 'src' folder.
-
-<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
-
-</details>
-
-
-<details>
-
-<summary><strong>NovaNav written in Python 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
-
-<br>
-
-##### Python version: 
-
-  - python
-  - python-pip
-  - python-pyqt5
-  - python-pyqt5-webengine
-
-[![Install NovaNav](https://img.shields.io/badge/Install-NovaNav%20Browser-purple)](https://github.com/felipealfonsog/NovaNav#installation)
-#### Via AUR using YAY (Version written in Python)
-
-[![NovaNav in Python](https://img.shields.io/badge/NovaNav-Python%20Version-yellow)](#)
-
-[![AUR](https://img.shields.io/aur/version/novanav)](https://aur.archlinux.org/packages/novanav)
-
-<!-- 
-[![AUR](https://img.shields.io/aur/version/novanav.svg)](https://aur.archlinux.org/packages/novanav)
--->
-
-https://aur.archlinux.org/packages/novanav
-
-NovaNav Browser is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install NovaNav:
-
-1. Make sure you have `yay` installed. If not, you can install it with the following command:
-   
-   ```
-   sudo pacman -S yay
-   ```
-   Once yay is installed, you can install by running the following command:
-   
-   ```
-   yay -S novanav
-   ```
-This command will automatically fetch the package from AUR and handle the installation process for you.
-You can find NovaNav Browser in your program menu!
-
-
-#### 🚀 Requirements & Instructions for compiling and executing manually.
-
-Install Python3, then:
-
-You might need perhaps to create an enviroment for pip: 
-```
-python3 -m venv novanav-env
-source novanav-env/bin/activate
-```
-
-If not, just go with this:
-
-```
-pip3 install -r requirements.txt
-```
-
-Runt it with: 
-
-```
-python3 ./src/novanav.py
-```
-
-
-<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
-
-</details>
-
-
-<details>
-
-<summary><strong>NovaNav written in Rust 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
-
-<br>
-
-Important library to install:
-
-```
-sudo pacman -S libsoup
-```
-
-In Arch, add this line to .bashrc:
-
-```
-export PKG_CONFIG_PATH=/usr/lib/pkgconfig:$PKG_CONFIG_PATH
-```
-
- Instructions for installation/compiling the program written in Rust*: 
-
-
-
-Add that to the [dependencies] section of your `Cargo.toml` file:
-```
-vim Cargo.toml
-```
-
-To test it , run this command on terminal:
-
-```
-chmod +x run_novanav_rust.sh
-./run_novanav_rust.sh
-```
-Compiling: 
-
-```
-rustc src/rust/novanav.rs
-./novanav
-```
-
-<sub>* It might contain lots of errors, bugs, etc.. Meanwhile, Keep it simple now with Python stable version, running smomothly!</sub>
 
 </details>
 
