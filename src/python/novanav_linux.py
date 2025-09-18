@@ -4,6 +4,7 @@ from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngineSettings
 
+
 class URLInputDialog(QDialog):
     def __init__(self, parent=None):
         super(URLInputDialog, self).__init__(parent)
@@ -16,8 +17,18 @@ class URLInputDialog(QDialog):
         self.ok_button.clicked.connect(self.accept)
 
 
+class CustomWebEngineView(QWebEngineView):
+    def __init__(self, main_window, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.main_window = main_window
+
+    def createWindow(self, windowType):
+        # Abrir links con target=_blank en una nueva pestaña
+        return self.main_window.create_new_tab(blank=True)
+
+
 class NovaNav(QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, initial_url=None):
         super(NovaNav, self).__init__(parent)
         self.setWindowTitle("NovaNav - Super Lightweight Browser")
         self.setGeometry(100, 100, 800, 900)
@@ -44,77 +55,73 @@ class NovaNav(QMainWindow):
         self.shortcut_toggle_titles = QShortcut(Qt.CTRL + Qt.Key_V, self)
         self.shortcut_toggle_titles.activated.connect(self.toggle_titles)
 
-        self.create_new_tab("https://www.google.com")
+        # Mantener referencias de ventanas nuevas para evitar cierre prematuro
+        self.open_windows = []
+
+        # Solo crear pestaña inicial si se dio URL
+        if initial_url is not None:
+            self.create_new_tab(initial_url)
 
         self.add_navigation_buttons()
-
         self.tab_widget.tabCloseRequested.connect(self.close_tab)
-
         shortcut_quit = QShortcut(QKeySequence(Qt.CTRL + Qt.Key_Q), self)
         shortcut_quit.activated.connect(QApplication.quit)
-
         self.tab_widget.tabBarClicked.connect(self.addCloseButtonToTab)
 
     def set_tab_title(self, index, title):
-        # Limitar la longitud del título a 20 caracteres
         title = title[:20] if len(title) > 20 else title
         self.tab_widget.setTabText(index, title)
 
     def show_url_input_dialog(self):
         if self.url_input_dialog.exec_() == QDialog.Accepted:
             url = self.url_input_dialog.url_entry.text()
-            if not url.startswith("http://") and not url.startswith("https://"):
+            if not url.startswith(("http://", "https://")):
                 url = "http://" + url
             self.create_new_tab(url)
 
     def close_tab(self, index):
         widget_to_remove = self.tab_widget.widget(index)
-        browser_to_remove = widget_to_remove.findChild(QWebEngineView)
-
+        browser_to_remove = widget_to_remove if isinstance(widget_to_remove, QWebEngineView) else widget_to_remove.findChild(QWebEngineView)
         if browser_to_remove:
             browser_to_remove.page().disconnect()
             browser_to_remove.close()
-
         self.tab_widget.removeTab(index)
 
     def zoom_in(self):
-        current_browser = self.tab_widget.currentWidget().findChild(QWebEngineView)
-        if current_browser:
+        current_browser = self.tab_widget.currentWidget()
+        if isinstance(current_browser, QWebEngineView):
             current_browser.setZoomFactor(current_browser.zoomFactor() + 0.1)
 
     def zoom_out(self):
-        current_browser = self.tab_widget.currentWidget().findChild(QWebEngineView)
-        if current_browser:
+        current_browser = self.tab_widget.currentWidget()
+        if isinstance(current_browser, QWebEngineView):
             current_browser.setZoomFactor(current_browser.zoomFactor() - 0.1)
-
-    def set_tab_title(self, index, title):
-        # Limitar la longitud del título a 20 caracteres
-        title = title[:20] if len(title) > 20 else title
-        self.tab_widget.setTabText(index, title)
 
     def toggle_titles(self):
         for i in range(self.tab_widget.count()):
-            browser = self.tab_widget.widget(i).findChild(QWebEngineView)
-            if browser:
-                title = browser.title() if self.tab_widget.tabBar().isVisible() else browser.page().url().toString()
-                self.tab_widget.setTabText(i, title)
+            browser = self.tab_widget.widget(i)
+            if isinstance(browser, QWebEngineView):
+                # Actualizar siempre el título según título actual
+                self.tab_widget.setTabText(i, browser.title())
         self.tab_widget.tabBar().setVisible(not self.tab_widget.tabBar().isVisible())
 
-    def create_new_tab(self, url):
+    def create_new_tab(self, url=None, blank=False):
         profile_name = f"CustomProfile_{len(self.tab_widget)}"
         profile = QWebEngineProfile(profile_name)
+        profile.setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, como Gecko) Chrome/122.0.0.0 Safari/537.36")
 
-        profile.setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36")
+        browser = CustomWebEngineView(self)
+        if not blank and url:
+            browser.setUrl(QUrl(url))
 
-        browser = QWebEngineView()
-        browser.setUrl(QUrl(url))
         browser.page().settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+        index = self.tab_widget.addTab(browser, "")
+        self.tab_widget.setCurrentIndex(index)
 
-        self.tab_widget.addTab(browser, "")
-
-        browser.loadFinished.connect(lambda: self.set_tab_title(self.tab_widget.indexOf(browser), browser.title()))
-        browser.urlChanged.connect(lambda: self.set_tab_title(self.tab_widget.indexOf(browser), browser.title()))
-
+        # Actualizar título en estas señales para asegurar sincronización completa
+        browser.loadFinished.connect(lambda: self.set_tab_title(index, browser.title()))
+        browser.titleChanged.connect(lambda title, i=index: self.set_tab_title(i, title))
+        browser.urlChanged.connect(lambda url, i=index: self.set_tab_title(i, browser.title()))
         browser.setZoomFactor(0.67)
 
         close_button = QPushButton("✖")
@@ -123,9 +130,10 @@ class NovaNav(QMainWindow):
         close_button.clicked.connect(lambda: self.close_tab(self.tab_widget.indexOf(browser)))
         self.tab_widget.tabBar().setTabButton(self.tab_widget.count() - 1, QTabBar.RightSide, close_button)
 
-        # Conectar el evento customContextMenuRequested al método onCustomContextMenuRequested
         browser.setContextMenuPolicy(Qt.CustomContextMenu)
         browser.customContextMenuRequested.connect(lambda pos, browser=browser: self.onCustomContextMenuRequested(pos, browser))
+
+        return browser if blank else None
 
     def addCloseButtonToTab(self, tabIndex):
         if not self.tab_widget.tabBar().tabButton(tabIndex, QTabBar.RightSide):
@@ -137,22 +145,23 @@ class NovaNav(QMainWindow):
 
     def add_navigation_buttons(self):
         navigation_layout = QHBoxLayout()
-
-        buttons_info = [("+", self.open_google_tab), ("<", self.go_back), (">", self.go_forward), ("o", self.show_url_input_dialog), ("=", self.show_credits_popup), ("-", self.toggle_titles)]
-
-        for text, action in buttons_info:
+        buttons = [
+            ("+", self.open_google_tab),
+            ("<", self.go_back),
+            (">", self.go_forward),
+            ("o", self.show_url_input_dialog),
+            ("=", self.show_credits_popup),
+            ("-", self.toggle_titles)
+        ]
+        for text, action in buttons:
             button = QPushButton(text)
             button.setFixedSize(10, 10)
             button.clicked.connect(action)
             navigation_layout.addWidget(button)
-
         navigation_layout.addStretch()
-
         navigation_container = QWidget()
         navigation_container.setLayout(navigation_layout)
-
         self.tab_widget.setCornerWidget(navigation_container, Qt.TopRightCorner)
-
         for i in range(self.tab_widget.count()):
             self.addCloseButtonToTab(i)
 
@@ -162,9 +171,7 @@ class NovaNav(QMainWindow):
     def show_credits_popup(self):
         credits_popup = QDialog(self)
         credits_popup.setWindowTitle("Credits")
-
         credits_layout = QVBoxLayout(credits_popup)
-
         credits_label = QLabel(
             "NovaNav - Super Lightweight Browser\n\n"
             "Credits:\n"
@@ -186,48 +193,46 @@ class NovaNav(QMainWindow):
             "ctrl+t (New tab)\n"
             "ctrl+v (hide tabs for distraction-free)\n"
             "ctrl+q (quit)\n"
-            "\n")
+            "\n"
+        )
         credits_label.setAlignment(Qt.AlignCenter)
         credits_layout.addWidget(credits_label)
-
         credits_popup.exec_()
 
     def go_back(self):
-        current_browser = self.tab_widget.currentWidget().findChild(QWebEngineView)
-        if current_browser:
-            if current_browser.history().canGoBack():
-                current_browser.back()
+        current_browser = self.tab_widget.currentWidget()
+        if isinstance(current_browser, QWebEngineView) and current_browser.history().canGoBack():
+            current_browser.back()
 
     def go_forward(self):
-        current_browser = self.tab_widget.currentWidget().findChild(QWebEngineView)
-        if current_browser:
-            if current_browser.history().canGoForward():
-                current_browser.forward()
+        current_browser = self.tab_widget.currentWidget()
+        if isinstance(current_browser, QWebEngineView) and current_browser.history().canGoForward():
+            current_browser.forward()
 
     def open_new_window(self, url):
-        new_window = QMainWindow()  # Creamos una nueva instancia de la ventana
-        new_window.setWindowTitle("NovaNav - New Window")  # Establecemos el título de la ventana
-        new_window.resize(800, 500)  # Establecemos el tamaño de la ventana
-        screen_geometry = QApplication.primaryScreen().geometry()  # Obtenemos la geometría de la pantalla
-        x = (screen_geometry.width() - new_window.width()) / 2  # Calculamos la posición x centrada
-        y = (screen_geometry.height() - new_window.height()) / 2  # Calculamos la posición y centrada
-        new_window.move(int(x), int(y))  # Movemos la ventana a la posición centrada
+        new_window = QMainWindow()
+        new_window.setWindowTitle("NovaNav - New Window")
+        new_window.resize(800, 900)
+        screen_geometry = QApplication.primaryScreen().geometry()
+        x = (screen_geometry.width() - new_window.width()) / 2
+        y = (screen_geometry.height() - new_window.height()) / 2
+        new_window.move(int(x), int(y))
 
-        window = NovaNav(parent=new_window)
-        window.create_new_tab(url)  # Abrimos una nueva pestaña con la URL proporcionada
+        new_nav = NovaNav(parent=new_window)
+        new_window.setCentralWidget(new_nav)
+        new_nav.show()
 
-        new_window.setCentralWidget(window)  # Establecemos la ventana central de la nueva ventana
+        new_nav.create_new_tab(url)
 
-        new_window.show()  # Mostramos la nueva ventana
+        self.open_windows.append(new_window)
 
+   
 
     def onCustomContextMenuRequestedForNewWindow(self, pos):
         new_browser = self.sender()
         if not isinstance(new_browser, QWebEngineView):
             return
-
         menu = QMenu()
-
         back_action = menu.addAction("Back")
         forward_action = menu.addAction("Forward")
         refresh_action = menu.addAction("Refresh")
@@ -237,12 +242,10 @@ class NovaNav(QMainWindow):
         forward_action.triggered.connect(lambda: new_browser.forward())
         refresh_action.triggered.connect(lambda: new_browser.reload())
         credits_action.triggered.connect(self.show_credits_popup)
-
         menu.exec(new_browser.mapToGlobal(pos))
 
     def onCustomContextMenuRequested(self, pos, browser):
         menu = QMenu()
-
         new_tab_action = menu.addAction("Open link in new tab")
         new_window_action = menu.addAction("Open link in new window")
         back_action = menu.addAction("Back")
@@ -262,17 +265,13 @@ class NovaNav(QMainWindow):
         back_action.triggered.connect(lambda: browser.back())
         forward_action.triggered.connect(lambda: browser.forward())
         refresh_action.triggered.connect(lambda: browser.reload())
-
         show_tabs_action.triggered.connect(self.toggle_titles)
-
         credits_action.triggered.connect(self.show_credits_popup)
-
-        # Mostrar el menú contextual en la posición del cursor
         menu.exec_(browser.mapToGlobal(pos))
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = NovaNav()
+    window = NovaNav(initial_url="https://www.google.com")
     window.show()
     sys.exit(app.exec_())
