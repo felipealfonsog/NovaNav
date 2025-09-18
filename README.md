@@ -60,18 +60,15 @@ NovaNav was inspired by Arc Browser due to its minimalist interface. However, th
 
 If you're using Arch Linux, you can find NovaNav Browser in your program menu after installation!
 
-C++ Version:
-
   - qt5-base
   - qt5-webengine
+  - python3 
 
 
 #
 
 #### Installation
-#### Via AUR using YAY (Version written in C++)
-
-[![NovaNav in C++](https://img.shields.io/badge/NovaNav-C++%20Version-EE6352)](#)
+#### Via AUR using YAY 
 
 [![AUR](https://img.shields.io/aur/version/novanav)](https://aur.archlinux.org/packages/novanav)
 
@@ -101,7 +98,7 @@ You can find NovaNav Browser in your program menu!
 
 #
 
-#### Bash Installer 🚀 for Linux (Arch and Debian) - macOS*: (Version written in C++)
+#### Bash Installer 🚀 for Linux (Arch and Debian) - macOS*:
 
 [![Bash Installer Version](https://img.shields.io/badge/Bash%20Installer%20Version-Available-brightgreen)](#)
 
