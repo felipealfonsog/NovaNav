@@ -1,10 +1,9 @@
 #### NovaNav - Super Lightweight Browser 🌐 
 
-NovaNav: Lightweight browser delivering a fast, distraction-free browsing experience for Linux (AUR package available & Bash installer for Arch & Debian), working smoothly. During the Bash installation, you can choose macOS, but it is not stable yet. It offers essential browsing functionalities while focusing on simplicity and efficiency. This is my own version of Arc Browser, mostly for Linux, keeping in mind the proportions because it's a project done solely by me from scratch.
-
  <img src="./images/icons/icon-small.png" alt="NovaNav-Logo" width="68" height="68">
 
-NovaNav was inspired by Arc Browser due to its minimalist interface. However, there is no version of Arc available for Linux. Therefore, I wanted to create a minimalist and distraction-free web browser, which is the essence of this project. NovaNav offers essential browsing functionalities while focusing on complete simplicity and efficiency. With NovaNav, users can effortlessly navigate the web, open multiple tabs, and adjust zoom settings for optimal viewing using the keyboard. The browser's clean interface and intuitive design make it ideal for users who prefer a clutter-free browsing experience. By minimizing distractions and prioritizing essential features, NovaNav aims to provide a seamless and enjoyable web browsing experience.
+NovaNav: Lightweight browser delivering a fast, distraction-free browsing experience for Linux (AUR package available & Bash installer for Arch & Debian), working smoothly. During the Bash installation, you can choose macOS, but it is not stable yet. It offers essential browsing functionalities while focusing on simplicity and efficiency, to mainly be focused in browsing, just that. It's a a minimalist and distraction-free web browser. It's designed to be simple and efficient, with essential browsing functionalities while prioritizing simplicity and efficiency. With NovaNav, users can effortlessly navigate the web, open multiple tabs, and adjust zoom settings for optimal viewing using the keyboard. The browser's clean interface and intuitive design make it ideal for users who prefer a clutter-free browsing experience. By minimizing distractions and prioritizing essential features, NovaNav aims to provide a seamless and enjoyable web browsing experience.
+
 
 [![Download Install NovaNav](https://custom-icon-badges.demolab.com/badge/Install-NovaNav%20Browser-blue.svg?style=for-the-badge&logo=nnav-mini-icon&logoColor=white)](https://github.com/felipealfonsog/NovaNav#installation)
 
@@ -160,7 +159,7 @@ Please note that if you encounter any issues or have suggestions, feel free to r
 
 Thank you for joining me on this journey, and I hope it brings value to your life and workflow. Let's continue making technology accessible and enjoyable for everyone!
 
-<sub>* on macOS version might contain lots of errors, bugs, etc.</sub>
+<sub>* on macOS version might contain errors, bugs, etc.</sub>
 
 #
 
@@ -172,7 +171,7 @@ Thank you for joining me on this journey, and I hope it brings value to your lif
 - URL Navigation: Enter URLs directly or use the search bar to navigate to websites.
 - Zoom Control: Adjust zoom settings to customize the display of web pages.
 - User-friendly Interface: Clean and intuitive interface for easy navigation and usage.
-- Basic Settings: Customize settings such as homepage and default search engine.
+- Basic Settings: Customize settings. 
 
 
 #
