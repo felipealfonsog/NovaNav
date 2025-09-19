@@ -5,7 +5,7 @@ welcome() {
     ╔═══════════════════════════════════════╗
     ║                                       ║
     ║   ~ NovaNav Browser ~                 ║
-    ║   Developed with ❤️ by                 ║
+    ║   Developed with ❤️ by                ║
     ║   Felipe Alfonso González L.          ║
     ║   Computer Science Engineer           ║
     ║   Chile                               ║
@@ -134,45 +134,38 @@ install_dependencies_linux() {
     fi
 }
 
-download_compile_install() {
-    local pkgver="0.0.9"
-    local pkgname="novanav-cpp"
+download_install() {
+    local pkgver="0.1.11"
+    local pkgname="novanav"
     local url="https://github.com/felipealfonsog/NovaNav/archive/refs/tags/v.${pkgver}.tar.gz"
-    local filename="${pkgname}-${pkgver}.tar.gz"
-    local src_dir=""
+    local filename="v.${pkgver}.tar.gz"
+    local src_dir="NovaNav-v.${pkgver}"
     local bin_dir="/usr/local/bin"
     local icon_dir="/usr/share/pixmaps"
     local desktop_dir="/usr/share/applications"
 
-    if [[ "$(uname)" == "Darwin" ]]; then
-        src_dir="src/cpp_macos"
-    else
-        src_dir="src/cpp"
-    fi
-
-    # Download source
+    # Descargar fuente
     wget -O "$filename" "$url"
 
-    # Extract source
+    # Extraer fuente
     tar xf "$filename"
 
-    # Enter source directory
-    cd "NovaNav-v.${pkgver}/${src_dir}"
+    # Instalar el script Python como ejecutable
+    sudo install -Dm755 "${src_dir}/src/python/novanav.py" "${bin_dir}/novanav.py"
 
-    # Prepare build
-    qmake PREFIX=/usr
+    # Crear wrapper bash ejecutable
+    echo '#!/bin/bash' > novanav
+    echo 'python3 /usr/local/bin/novanav.py "$@"' >> novanav
+    chmod +x novanav
+    sudo install -Dm755 novanav "${bin_dir}/novanav"
+    rm novanav
 
-    # Build
-    make
+    # Instalar icono
+    sudo install -Dm644 "${src_dir}/src/nnav-iconlogo.png" "${icon_dir}/novanav.png"
 
-    # Install binary
-    sudo install -Dm755 novanav "$bin_dir/novanav"
-
-    # Install icon
-    sudo install -Dm644 "../nnav-iconlogo.png" "$icon_dir/novanav.png"
-
-    # Install .desktop file
-    sudo install -Dm644 "../novanav.desktop" "$desktop_dir/novanav.desktop"
+    # Instalar archivo .desktop
+    sudo install -Dm644 "${src_dir}/src/novanav.desktop" "${desktop_dir}/novanav.desktop"
+}
 }
 
 configure_path() {
@@ -222,7 +215,7 @@ main() {
         install_dependencies_linux
     fi
 
-    download_compile_install
+    download_install
     configure_path
     reload_shell
     cleanup
