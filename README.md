@@ -185,7 +185,7 @@ ctrl+q (quit)
 ```
 
 #
-
+<!--
 #### NovaNav Browser written in other languages (Experimental part of the project)*
 
 [![NovaNav under development](https://img.shields.io/badge/NovaNav-In%20Other%20Languages-blue)](#)
@@ -326,6 +326,8 @@ NovaNav Browser is available on AUR (Arch User Repository), and it can be instal
 This command will automatically fetch the package from AUR and handle the installation process for you.
 You can find NovaNav Browser in your program menu!
 
+-->
+<!--
 
 #### 🚀 Requirements & Instructions for compiling and executing manually.
 
@@ -490,6 +492,7 @@ Also if you want to install `pyrcc5` (which is not necessary but can help) just 
 
 </details>
 
+-->
 
 #
 
