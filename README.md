@@ -288,7 +288,8 @@ To install NovaNav system-wide after compilation, you can use the provided PKGBU
 <summary><strong>NovaNav written in Python 🚀 - beta/testing (experimental alternative in progress)*</strong></summary>
 
 <br>
-
+-->
+<!--
 ##### Python version: 
 
   - python
@@ -296,6 +297,8 @@ To install NovaNav system-wide after compilation, you can use the provided PKGBU
   - python-pyqt5
   - python-pyqt5-webengine
 
+-->
+<!--
 [![Install NovaNav](https://img.shields.io/badge/Install-NovaNav%20Browser-purple)](https://github.com/felipealfonsog/NovaNav#installation)
 #### Via AUR using YAY (Version written in Python)
 
