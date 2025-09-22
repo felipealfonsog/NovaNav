@@ -235,7 +235,8 @@ NovaNav Browser is available on AUR (Arch User Repository), and it can be instal
 
 This command will automatically fetch the package from AUR and handle the installation process for you.
 You can find NovaNav Browser in your program menu!
-
+-->
+<!-- 
 #
 
 ##### Instructions for Compiling from Source
