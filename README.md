@@ -192,7 +192,8 @@ ctrl+q (quit)
 
 
 
-
+-->
+<!-- 
 <details>
 
 <summary><strong>NovaNav written in C++ 🚀 - (Manual instructions)*</strong></summary>
@@ -273,7 +274,8 @@ Compile the source code:
 ```
 make
 ```
-
+-->
+<!--
 Once compilation is complete, the novanav binary will be generated in the current directory.
 
 Installation
