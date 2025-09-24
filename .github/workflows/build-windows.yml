@@ -1,0 +1,36 @@
+name: Build Windows exe
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+          if exist requirements.txt (pip install -r requirements.txt)
+
+      - name: Build exe with PyInstaller
+        run: |
+          pyinstaller --onefile --noconfirm --clean --noconsole ./src/python/novanav.py
+          REM Si tu script necesita ventana GUI y no quieres consola, usa --noconsole
+          REM Ajusta el nombre del script arriba
+
+      - name: Upload exe artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-exe
+          path: dist/*.exe
