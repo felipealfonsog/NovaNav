@@ -17,17 +17,20 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install pip and PyInstaller
         run: |
           python -m pip install --upgrade pip
           pip install pyinstaller
+
+      - name: Install requirements (if exists)
+        run: |
           if exist requirements.txt (pip install -r requirements.txt)
+        shell: cmd
 
       - name: Build exe with PyInstaller
         run: |
-          pyinstaller --onefile --noconfirm --clean --noconsole ./src/python/novanav.py
-          REM Si tu script necesita ventana GUI y no quieres consola, usa --noconsole
-          REM Ajusta el nombre del script arriba
+          pyinstaller --onefile --noconfirm --clean ./src/python/novanav.py --name novanav
+          REM Usa --noconsole si tu app es solo GUI
 
       - name: Upload exe artifact
         uses: actions/upload-artifact@v4
