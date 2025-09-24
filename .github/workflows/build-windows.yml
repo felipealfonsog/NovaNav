@@ -25,8 +25,7 @@ jobs:
 
       - name: Build exe with PyInstaller
         run: |
-          pyinstaller --onefile --noconfirm --clean ./src/python/novanav.py --name novanav
-          REM Usa --noconsole si tu app es solo GUI
+          pyinstaller --onefile --noconfirm --clean --noconsole ./src/python/novanav.py --name novanav
 
       - name: Upload exe artifact
         uses: actions/upload-artifact@v4
